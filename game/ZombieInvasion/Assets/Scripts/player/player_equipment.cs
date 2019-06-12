@@ -17,6 +17,11 @@ public class player_equipment : MonoBehaviour
 
     private bool currentWeapon;
 
+    public bool getCurrentWeapon()
+    {
+        return currentWeapon;
+    }
+
     public weapon_gun getGun()
     {
         return gun;

@@ -43,8 +43,8 @@ public class weapon_gun : weapon
     }
     public void reload()
     {
-        ammo = magazineCapacity;
-        reserveAmmo -=  magazineCapacity - ammo;
+        reserveAmmo -= magazineCapacity - ammo;
+        ammo = magazineCapacity;        
     }
 
 }
