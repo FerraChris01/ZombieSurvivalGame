@@ -4,10 +4,28 @@ using UnityEngine;
 
 public class player_equipment : MonoBehaviour
 {
-    public weapon_gun gun;
-    public weapon_melee melee;
+    #region Singleton
+    public static player_equipment instance;
+    void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
+    [SerializeField] weapon_gun gun;
+    [SerializeField] weapon_melee melee;
 
     private bool currentWeapon;
+
+    public weapon_gun getGun()
+    {
+        return gun;
+    }
+
+    public weapon_melee getMelee()
+    {
+        return melee;
+    }
 
     void Start()
     {

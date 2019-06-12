@@ -5,6 +5,7 @@ using UnityEngine;
 public class weapon : MonoBehaviour
 {
     public int damage;
+    public string name;
 
     public virtual void fire()
     {
