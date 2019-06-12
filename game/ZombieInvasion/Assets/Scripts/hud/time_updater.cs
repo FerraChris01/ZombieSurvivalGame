@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class time_updater : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        GetComponent<UnityEngine.UI.Text>().text = Time.
     }
 }
