@@ -14,7 +14,10 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "enemy")
+        {
             other.gameObject.GetComponent<enemy_entity>().lifePoints -= damage;
+            Destroy(this.gameObject);
+        }
     }
     public void setDamage(int weaponDamage)
     {
