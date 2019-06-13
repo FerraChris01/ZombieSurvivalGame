@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class timer : MonoBehaviour
 {
     private int timeLeft;
-    public bool triggered;
+    [SerializeField] bool triggered;
 
     void Start()
     {

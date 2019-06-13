@@ -5,10 +5,12 @@ using UnityEngine;
 public class player_movement_controller : MonoBehaviour
 {
     public int speed;
+    public bool canMove;
     void Start()
     {
         Cursor.visible = false;
         speed = 1;
+        canMove = true;
     }
     void Update()
     {
@@ -24,13 +26,32 @@ public class player_movement_controller : MonoBehaviour
     }
     void move()
     {
-        if (Input.GetKey(KeyCode.W))
-            transform.position += new Vector3(0, 0, speed);
-        if (Input.GetKey(KeyCode.S))
-            transform.position -= new Vector3(0, 0, speed);
-        if (Input.GetKey(KeyCode.D))
-            transform.position += new Vector3(speed, 0, 0);
-        if (Input.GetKey(KeyCode.A))
-            transform.position -= new Vector3(speed, 0, 0);
+        if (canMove)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                //RaycastHit hit;
+                //if (Physics.Raycast(transform.position, transform.position + new Vector3(0, 0, 5), out hit))
+                //{
+                //    Debug.DrawLine(transform.position, transform.position + new Vector3(0, 0, 5));
+                //    Debug.Log("distanza alto: " + hit.distance);
+                //    if (hit.distance > 8)
+
+                //}
+                transform.position += new Vector3(0, 0, speed);
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                transform.position -= new Vector3(0, 0, speed);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.position += new Vector3(speed, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.position -= new Vector3(speed, 0, 0);
+            }
+        }
     }
 }
