@@ -70,6 +70,6 @@ public class Game_manager : MonoBehaviour
     public int getZombieDamage()
     {
         return zombieDamage;
-    } 
+    } //
    
 }
