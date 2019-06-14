@@ -6,6 +6,6 @@ public class armor_updater : MonoBehaviour
 {
     void Update()
     {
-        GetComponent<UnityEngine.UI.Text>().text = player_entity.instance.getArmor().ToString();
+       GetComponent<SimpleHealthBar>().UpdateBar(player_entity.instance.getArmor(), player_entity.instance.getMaxArmour());
     }
 }

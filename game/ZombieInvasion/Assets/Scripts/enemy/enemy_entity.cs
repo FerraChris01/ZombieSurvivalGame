@@ -4,16 +4,33 @@ using UnityEngine;
 
 public class enemy_entity : MonoBehaviour
 {
-    public int lifePoints { get; set; }
+    private int lifePoints;
+
+    public int getLifePoints()
+    {
+        return lifePoints;
+    }
+    public void setLifePoints(int lp)
+    {
+        lifePoints = lp;
+    }
+    public void decLifePoints(int lp)
+    {
+        lifePoints -= lp;
+    }
 
     void Start()
     {
-        lifePoints = 100;        
+        Game_manager.instance = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_manager>();
+        lifePoints = Game_manager.instance.getZombieLife();
     }
 
     void Update()
     {
         if (lifePoints <= 0)
+        {
+            Game_manager.instance.decZombiesLeft();
             Destroy(this.gameObject); //da sostituire con l'animazione die 
+        }        
     }
 }

@@ -11,13 +11,24 @@ public class player_entity : MonoBehaviour
         instance = this;
     }
     #endregion
-    [SerializeField] int life;
-    [SerializeField] int armor;
+    private int life;
+    private int armour;
+    private int maxLife;
+    private int maxArmour;
+
     private int score;
 
     private void Start()
     {
         score = 0;
+        life = Game_manager.instance.getPlayerLife();
+        armour = Game_manager.instance.getPlayerArmour();
+        maxLife = life;
+        maxArmour = armour;
+    }
+    public int getMaxLife()
+    {
+        return maxLife;
     }
     public void incScore(int s)
     {
@@ -32,17 +43,21 @@ public class player_entity : MonoBehaviour
     {
         return life;
     }
-    public void decLife(int l)
+    public void decLife(int lf)
     {
-        life -= l;
+        life -= lf;
     }
 
     public int getArmor()
     {
-        return armor;
+        return armour;
+    }
+    public int getMaxArmour()
+    {
+        return maxArmour;
     }
     public void decArmor(int a)
     {
-        armor -= a;
+        armour -= a;
     }    
 }

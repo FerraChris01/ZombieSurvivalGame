@@ -11,6 +11,7 @@ public class weapon_gun : weapon
     [SerializeField] bool singleShot;
     [SerializeField] int reserveAmmo;
     [SerializeField] int magazineCapacity;
+    [SerializeField] AudioSource sound;
     private int ammo;
 
     public void setReserveAmmo(int tot)
@@ -33,8 +34,10 @@ public class weapon_gun : weapon
 
     public override void fire()
     {
-        if (((singleShot && Input.GetKeyDown(KeyCode.Mouse0)) || (!singleShot && Input.GetKey(KeyCode.Mouse0))) && ammo > 0 && !shootingTimer.isTriggered())
+        if (((singleShot && Input.GetKeyDown(KeyCode.Mouse0)) || (!singleShot && Input.GetKey(KeyCode.Mouse0))) && ammo > 0 && 
+            (shootingTimer.triggeredValue() == 0 || shootingTimer.triggeredValue() == 2))
         {
+             sound.Play();
              Bullet nuovoPr = Instantiate(bullet, spawnPoint.transform.position, spawnPoint.transform.rotation);
              nuovoPr.setDamage(damage);
              shootingTimer.triggerTimer(shootingRate);

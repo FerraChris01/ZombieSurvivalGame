@@ -5,29 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class timer : MonoBehaviour
 {
-    private int timeLeft;
-    [SerializeField] bool triggered;
+    private float timeLeft;
+    [SerializeField] int triggered; //0 not triggered, 1 triggered timer is going, 2 timers has finished
 
     void Start()
     {
-        triggered = false;
+        resetTimer();
     }
     public void triggerTimer(int towait)
     {
-        triggered = true;
-        timeLeft = towait / 1000;
+        triggered = 1;
+        timeLeft = towait / 1000f;
         StartCoroutine("LoseTime");
     }
 
     IEnumerator LoseTime()
     {
         yield return new WaitForSeconds(timeLeft);
-        triggered = false;
+        triggered = 2;
         StopCoroutine("LoseTime");
     }
 
-    public bool isTriggered()
+    public int triggeredValue()
     {
         return triggered;
+    }
+    public void resetTimer()
+    {
+        triggered = 0;
     }
 }

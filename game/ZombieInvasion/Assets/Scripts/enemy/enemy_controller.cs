@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class enemy_controller : MonoBehaviour
 {
-    public float lookRadius = 10f;
+    [SerializeField] timer time;
+    [SerializeField] float lookRadius = 10f;
     private Transform target;
     NavMeshAgent agent;
     private float speed;
@@ -26,11 +27,15 @@ public class enemy_controller : MonoBehaviour
             if (distance <= agent.stoppingDistance)
             {
                 agent.speed = 0;
-                // attack target h
+
                 FaceTarget();
+                AttackTarget();
             }
             else
+            { 
                 agent.speed = speed;
+                time.resetTimer();
+            }
 
         }
     }
@@ -39,6 +44,23 @@ public class enemy_controller : MonoBehaviour
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+    void AttackTarget()
+    {
+        if (time.triggeredValue() == 0)
+            time.triggerTimer(500);
+        else if (time.triggeredValue() == 2)
+        {
+            if (player_entity.instance.getArmor() > 0)
+                player_entity.instance.decArmor(Game_manager.instance.getZombieDamage());
+            else
+                player_entity.instance.decLife(Game_manager.instance.getZombieDamage());
+
+            time.triggerTimer(Game_manager.instance.getZombieAttackingRate());
+            
+        }
+
+
     }
     void OnDrawGizmosSelected()
     {
