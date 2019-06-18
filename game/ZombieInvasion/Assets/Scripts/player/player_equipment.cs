@@ -12,46 +12,64 @@ public class player_equipment : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] weapon_gun gun;
+    [SerializeField] weapon_gun[] guns;
     [SerializeField] weapon_melee melee;
+    private int selectedGun;    
+    private bool weaponKind;
 
-    private bool currentWeapon;
-
-    public bool getCurrentWeapon()
+    void Start()
     {
-        return currentWeapon;
+        switchGun(0);       
+        weaponKind = true;
     }
-
-    public weapon_gun getGun()
+    public weapon_gun[] getGuns()
     {
-        return gun;
+        return guns;
     }
-
+    public weapon_gun[] getShootingEquipment()
+    {
+        return guns;
+    }
     public weapon_melee getMelee()
     {
         return melee;
     }
-
-    void Start()
-    {
-        currentWeapon = true;
+    public bool getKindOfWeapon()
+    {        
+        return weaponKind;
     }
-
+    public weapon_gun getSelectedGun()
+    {
+        return guns[selectedGun];
+    }    
+    public int getSelectedGunIndex()
+    {
+        return selectedGun;
+    }
     public void attack()
     {
-        if (currentWeapon)
-            gun.fire();
+        if (weaponKind)
+            guns[selectedGun].fire();
         else
             melee.fire();
     }
-    public void switchWeapon(bool sw)
+    public void switchKindWeapon(bool sw)
     {
-        currentWeapon = sw;
+        weaponKind = sw;
+    }
+    public void switchGun(int index)
+    {
+        selectedGun = index;
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    if (i != index)
+        //        guns[i].enabled = false;
+       // }
     }
     public void reload()
     {
-        if (currentWeapon)
-            gun.reload();
+        if (weaponKind)
+            guns[selectedGun].reload();
         else
             melee.reload();
     }

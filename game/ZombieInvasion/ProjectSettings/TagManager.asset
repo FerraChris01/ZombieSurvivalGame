@@ -7,6 +7,8 @@ TagManager:
   - enemy
   - player
   - GameManager
+  - equipment
+  - grenade
   layers:
   - Default
   - TransparentFX

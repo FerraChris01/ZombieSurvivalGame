@@ -29,7 +29,7 @@ public class enemy_life_updater : MonoBehaviour
         {
             transform.Find("fill").GetComponent<UnityEngine.UI.Image>().fillAmount = enemy.getLifePoints() / (float)maxZombieLife;
             if (enemy.GetComponent<enemy_entity>().getLifePoints() <= 0)
-                Destroy(this.gameObject);
+                Destroy(gameObject);
         }
     }
 }

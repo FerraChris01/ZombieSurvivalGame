@@ -8,13 +8,16 @@ public class enemy_controller : MonoBehaviour
     [SerializeField] timer time;
     [SerializeField] float lookRadius = 10f;
     private Transform target;
-    NavMeshAgent agent;
+    private NavMeshAgent agent;
     private float speed;
+    private Vector3 aVelocity;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         speed = agent.speed;
         target = GameObject.FindGameObjectWithTag("player").transform;
+        aVelocity = agent.velocity;
     }
 
     void Update()
@@ -26,19 +29,19 @@ public class enemy_controller : MonoBehaviour
             agent.SetDestination(target.position);
             if (distance <= agent.stoppingDistance)
             {
-                agent.speed = 0;
-
+                //agent.isStopped = true;
                 FaceTarget();
                 AttackTarget();
             }
             else
-            { 
-                agent.speed = speed;
+            {
+                //agent.isStopped = false;
                 time.resetTimer();
             }
 
         }
     }
+    
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
@@ -48,7 +51,7 @@ public class enemy_controller : MonoBehaviour
     void AttackTarget()
     {
         if (time.triggeredValue() == 0)
-            time.triggerTimer(500);
+            time.triggerTimer(250);
         else if (time.triggeredValue() == 2)
         {
             if (player_entity.instance.getArmor() > 0)
@@ -67,4 +70,5 @@ public class enemy_controller : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
+    
 }

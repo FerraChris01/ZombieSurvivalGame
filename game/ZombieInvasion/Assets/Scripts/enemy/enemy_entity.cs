@@ -5,7 +5,8 @@ using UnityEngine;
 public class enemy_entity : MonoBehaviour
 {
     private int lifePoints;
-
+    
+    
     public int getLifePoints()
     {
         return lifePoints;
@@ -30,6 +31,7 @@ public class enemy_entity : MonoBehaviour
         if (lifePoints <= 0)
         {
             Game_manager.instance.decZombiesLeft();
+            player_entity.instance.incMoney(100);
             Destroy(this.gameObject); //da sostituire con l'animazione die 
         }        
     }

@@ -18,6 +18,7 @@ public class Game_manager : MonoBehaviour
     [SerializeField] int playerLife;
     [SerializeField] int playerArmour;
     [SerializeField] int zombieSpawningTimeRate;
+    [SerializeField] store_manager store;
     private int zombiesLeft;
     private int round;
 

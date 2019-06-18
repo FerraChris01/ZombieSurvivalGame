@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class weapon_melee : weapon
+public class Bonus_manager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,9 +14,5 @@ public class weapon_melee : weapon
     void Update()
     {
         
-    }
-    public void reload()
-    {
-
     }
 }

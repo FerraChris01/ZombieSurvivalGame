@@ -30,14 +30,6 @@ public class player_movement_controller : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                //RaycastHit hit;
-                //if (Physics.Raycast(transform.position, transform.position + new Vector3(0, 0, 5), out hit))
-                //{
-                //    Debug.DrawLine(transform.position, transform.position + new Vector3(0, 0, 5));
-                //    Debug.Log("distanza alto: " + hit.distance);
-                //    if (hit.distance > 8)
-
-                //}
                 transform.position += new Vector3(0, 0, speed);
             }
             else if (Input.GetKey(KeyCode.S))

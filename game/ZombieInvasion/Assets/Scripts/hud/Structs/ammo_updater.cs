@@ -6,7 +6,7 @@ public class ammo_updater : MonoBehaviour
 {
     void Update()
     {
-        transform.FindChild("MagazineAmmo").GetComponent<UnityEngine.UI.Text>().text = player_equipment.instance.getGun().getAmmoInMagazine().ToString();
-        transform.FindChild("ReserveValue").GetComponent<UnityEngine.UI.Text>().text = player_equipment.instance.getGun().getReserveAmmo().ToString();
+        transform.FindChild("MagazineAmmo").GetComponent<UnityEngine.UI.Text>().text = player_equipment.instance.getSelectedGun().getAmmoInMagazine().ToString();
+        transform.FindChild("ReserveValue").GetComponent<UnityEngine.UI.Text>().text = player_equipment.instance.getSelectedGun().getReserveAmmo().ToString();
     }
 }

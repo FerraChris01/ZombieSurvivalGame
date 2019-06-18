@@ -14,5 +14,7 @@ public class enemy_life_bar : MonoBehaviour
     void Update()
     {
         transform.position = enemy.transform.position + bias;
+        if (enemy.GetComponent<enemy_entity>().getLifePoints() <= 0)
+            Destroy(this.gameObject);
     }
 }
