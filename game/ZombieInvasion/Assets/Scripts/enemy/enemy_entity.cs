@@ -38,6 +38,7 @@ public class enemy_entity : MonoBehaviour
             {
                 isDead = true;
                 GetComponent<NavMeshAgent>().enabled = false;
+                GetComponent<BoxCollider>().enabled = false;
                 Game_manager.instance.decZombiesLeft();
                 player_entity.instance.incMoney(100);
                 time.triggerTimer(timeBeforeDestroying);

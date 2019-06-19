@@ -34,5 +34,4 @@ public class timer : MonoBehaviour
     {
         triggered = 0;
     }
-
 }

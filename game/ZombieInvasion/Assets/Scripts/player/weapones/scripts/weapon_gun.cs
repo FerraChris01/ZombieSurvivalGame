@@ -145,5 +145,12 @@ public class weapon_gun : weapon
 
         }
     }
-
+    public void abortReloading()
+    {
+        if (reloading)
+        {
+            reloading = false;
+            time.resetTimer();
+        }
+    }
 }

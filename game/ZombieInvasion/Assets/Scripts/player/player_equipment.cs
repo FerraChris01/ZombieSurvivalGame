@@ -55,7 +55,7 @@ public class player_equipment : MonoBehaviour
     }
     public void switchGun(int index)
     {
-
+        guns[selectedGun].abortReloading();
         selectedGun = index;
         for (int i = 0; i < 5; i++)
         {
