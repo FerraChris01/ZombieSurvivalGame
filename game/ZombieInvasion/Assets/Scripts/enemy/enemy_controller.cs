@@ -22,23 +22,26 @@ public class enemy_controller : MonoBehaviour
 
     void Update()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
-        if (distance <= lookRadius)
+        if (!GetComponent<enemy_entity>().isDead)
         {
-            
-            agent.SetDestination(target.position);
-            if (distance <= agent.stoppingDistance)
+            float distance = Vector3.Distance(target.position, transform.position);
+            if (distance <= lookRadius)
             {
-                //agent.isStopped = true;
-                FaceTarget();
-                AttackTarget();
-            }
-            else
-            {
-                //agent.isStopped = false;
-                time.resetTimer();
-            }
 
+                agent.SetDestination(target.position);
+                if (distance <= agent.stoppingDistance)
+                {
+                    //agent.isStopped = true;
+                    FaceTarget();
+                    AttackTarget();
+                }
+                else
+                {
+                    //agent.isStopped = false;
+                    time.resetTimer();
+                }
+
+            }
         }
     }
     
@@ -70,5 +73,6 @@ public class enemy_controller : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
+
     
 }

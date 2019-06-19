@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 453652152538328745}
   - component: {fileID: 4509316182302112361}
   - component: {fileID: 1387493675041873011}
-  - component: {fileID: 49163477412569456}
-  m_Layer: 0
+  - component: {fileID: 1865864866422106533}
+  m_Layer: 10
   m_Name: grenade
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &49163477412569456
+--- !u!114 &1865864866422106533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,11 +77,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69112b5fb66918428d167e46bb39700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 100
+  bulletSpeed: 200
   time: {fileID: 7034208453299701851}
-  triggerTime: 250
+  triggerTime: 0
   maxDistance: 50
-  radius: 50
+  radius: 30
+  explosionAnimation: {fileID: 100000, guid: e1e6a88ec533ebd4bb02cc28a77b8ab4, type: 3}
 --- !u!1 &4738508721744553773
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +94,7 @@ GameObject:
   - component: {fileID: 6242241441648737072}
   - component: {fileID: 354652457875329094}
   - component: {fileID: 4176175090322355674}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8757615294398971586}
   - component: {fileID: 7034208453299701851}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -26,6 +26,11 @@ public class gameplay_controller : MonoBehaviour
     }
     private void switchWeapon()
     {
-
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            equipment.switchGun(0);
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+            equipment.switchGun(1);
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+            equipment.switchGun(2);
     }
 }

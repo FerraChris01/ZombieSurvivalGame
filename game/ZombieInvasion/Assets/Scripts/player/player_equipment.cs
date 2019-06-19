@@ -14,13 +14,17 @@ public class player_equipment : MonoBehaviour
 
     [SerializeField] weapon_gun[] guns;
     [SerializeField] weapon_melee melee;
-    private int selectedGun;    
+    private int selectedGun;
     private bool weaponKind;
 
-    void Start()
+    public bool getSelectedWeaponKind()
     {
-        switchGun(0);       
+        return weaponKind;
+    }
+    void Start()
+    {             
         weaponKind = true;
+        switchGun(0);
     }
     public weapon_gun[] getGuns()
     {
@@ -33,10 +37,6 @@ public class player_equipment : MonoBehaviour
     public weapon_melee getMelee()
     {
         return melee;
-    }
-    public bool getKindOfWeapon()
-    {        
-        return weaponKind;
     }
     public weapon_gun getSelectedGun()
     {
@@ -53,18 +53,20 @@ public class player_equipment : MonoBehaviour
         else
             melee.fire();
     }
-    public void switchKindWeapon(bool sw)
-    {
-        weaponKind = sw;
-    }
     public void switchGun(int index)
     {
+
         selectedGun = index;
-        //for (int i = 0; i < 4; i++)
-        //{
-        //    if (i != index)
-        //        guns[i].enabled = false;
-       // }
+        for (int i = 0; i < 5; i++)
+        {
+            if (i != index)
+                guns[i].gameObject.SetActive(false);
+            else
+                guns[i].gameObject.SetActive(true);
+        }
+        if (guns[selectedGun].getAmmoInMagazine() == 0)
+            reload();
+
     }
     public void reload()
     {

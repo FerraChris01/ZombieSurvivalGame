@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class timer : MonoBehaviour
 {
     public float timeLeft;
-    [SerializeField] int triggered; //0 not triggered, 1 triggered timer is going, 2 timers has finished
+    [SerializeField] int triggered; ///0 not triggered, 1 triggered timer is going, 2 timers has finished
 
     void Start()
     {

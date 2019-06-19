@@ -6,7 +6,7 @@ public class selected_weapon_updater : MonoBehaviour
 {
     void Update()
     {
-        if (player_equipment.instance.getKindOfWeapon())
+        if (player_equipment.instance.getSelectedWeaponKind())
             transform.GetComponent<UnityEngine.UI.Text>().text = player_equipment.instance.getSelectedGun().name;
         else
             transform.GetComponent<UnityEngine.UI.Text>().text = player_equipment.instance.getMelee().name;

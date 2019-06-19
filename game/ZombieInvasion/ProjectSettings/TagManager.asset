@@ -9,6 +9,8 @@ TagManager:
   - GameManager
   - equipment
   - grenade
+  - bullet
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - PostProcessing
   - gun
   - bullet
-  - 
-  - 
+  - player
+  - equipment
   - 
   - 
   - 

@@ -21,6 +21,7 @@ public class weapon_gun : weapon
     [SerializeField] bool noMag;
     [SerializeField] bool isBought;
     [SerializeField] int isBonus;   //0 for normal gun, 1 for minigun, 2 for grenade launcher
+    //[SerializeField] Sprite indicator;
     private bool reloading;
     private int ammoInMag;
     private int reserve;
@@ -53,6 +54,10 @@ public class weapon_gun : weapon
     {
         if (isBonus == 1)
             setDamage(Game_manager.instance.getZombieLife() / 2);
+        else if (isBonus == 2)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(transform.position);
+        }
 
         if (isBonus == 1 || isBonus == 2)
             ammoInMag = 1;
@@ -92,8 +97,11 @@ public class weapon_gun : weapon
     }
     public void reload()
     {
-        reloading = true;
-        time.resetTimer();
+        if (!reloading && ammoInMag < magazineCapacity)
+        {
+            reloading = true;
+            time.resetTimer();
+        }
 
     }
     public void resetReserve()

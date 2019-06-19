@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3063825713007350799}
   - component: {fileID: 527471223793496597}
   - component: {fileID: 9001339409874366989}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: standard_bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4805428665963418966}
   - component: {fileID: 1223660672230604320}
   - component: {fileID: 3306886170980703164}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7897597237925433508}
   - component: {fileID: 8470757685412881981}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
