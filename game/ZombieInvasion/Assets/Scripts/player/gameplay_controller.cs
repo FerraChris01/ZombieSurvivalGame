@@ -10,7 +10,6 @@ public class gameplay_controller : MonoBehaviour
     {
         reload();
         fire();
-        switchWeapon();
     }
     private void reload()
     {
@@ -23,14 +22,5 @@ public class gameplay_controller : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse0))
             equipment.attack();
         
-    }
-    private void switchWeapon()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            equipment.switchGun(0);
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-            equipment.switchGun(1);
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-            equipment.switchGun(2);
     }
 }

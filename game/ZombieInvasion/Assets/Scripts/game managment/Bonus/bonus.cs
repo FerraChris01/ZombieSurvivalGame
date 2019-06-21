@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class bonus : MonoBehaviour
 {
-    [SerializeField] float spawningProbability;
-    [SerializeField] int timeToLive;
-    protected bool isSpawned;  
+    [SerializeField] int spawningProbability;
+    [SerializeField] GameObject bonusPrefab;
+    protected bool isSpawned;
     
-    public virtual void tryToSpawn()
+    public void tryToSpawn(Vector3 zombiePos)
     {
-        float k = Random.Range(0f, 100f);
-        if (k == spawningProbability)
-            isSpawned = true;
+        if (!isSpawned)
+        {
+            float k = Random.Range(1, spawningProbability);
+            if (k == 1)
+            {
+                Instantiate(bonusPrefab, zombiePos, Quaternion.identity);
+                isSpawned = true;
+            }
+        }
 
     }
     public float getSpawiningProbability()
     {
         return spawningProbability;
     }
-    public void incSpawningProbability(float sp)
+    public void incSpawningProbability(int sp)
     {
-        spawningProbability += sp;
+        spawningProbability -= sp;
     }
 }

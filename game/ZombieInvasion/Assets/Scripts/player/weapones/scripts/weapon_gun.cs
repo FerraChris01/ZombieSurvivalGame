@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class weapon_gun : weapon
 {
+    [SerializeField] GameObject timerPrefab;
+
+    private Timer time;
     [SerializeField] Gun_bullet bullet;
     [SerializeField] Grenade grenade;
-    [SerializeField] timer time;
     [SerializeField] GameObject spawnPoint;
     [SerializeField] int shootingRate;
     [SerializeField] bool singleShot;
@@ -25,6 +27,7 @@ public class weapon_gun : weapon
     private bool reloading;
     private int ammoInMag;
     private int reserve;
+
     
     public bool IsBought()
     {
@@ -42,9 +45,9 @@ public class weapon_gun : weapon
     {
         reserveAmmo = tot;
     }
-    public int getReserveAmmo()
+    public int getReserve()
     {
-        return reserveAmmo;
+        return reserve;
     }
     public int getAmmoInMagazine()
     {
@@ -52,6 +55,7 @@ public class weapon_gun : weapon
     }
     private void Start()
     {
+        time = Instantiate(timerPrefab).GetComponent<Timer>();
         if (isBonus == 1)
             setDamage(Game_manager.instance.getZombieLife() / 2);
         else if (isBonus == 2)
@@ -70,28 +74,28 @@ public class weapon_gun : weapon
     public override void fire()
     {
         if (((singleShot && Input.GetKeyDown(KeyCode.Mouse0)) || (!singleShot && Input.GetKey(KeyCode.Mouse0))) && ammoInMag > 0 &&
-            (time.triggeredValue() == 0 || time.triggeredValue() == 2) && !reloading)
+            (time.triggerValue() == 0 || time.triggerValue() == 2) && !reloading)
         {
             sound.PlayOneShot(shootingSound);
             if (isBonus == 2)
             {
                 Grenade nGranade = Instantiate(grenade, spawnPoint.transform.position, spawnPoint.transform.rotation);
-                time.triggerTimer(shootingRate);
+                time.await(shootingRate);
             }
             else
             {                
                 Gun_bullet nBullet = Instantiate(bullet, spawnPoint.transform.position, spawnPoint.transform.rotation);
                 nBullet.setDamage(getDamage(), transform.position, getFadingCoefficient());
-                time.triggerTimer(shootingRate);
+                time.await(shootingRate);
                 if (isBonus == 0)
                     ammoInMag--;
             }
         }
         else if (((singleShot && Input.GetKeyDown(KeyCode.Mouse0)) || (!singleShot && Input.GetKey(KeyCode.Mouse0))) && ammoInMag == 0 &&
-            (time.triggeredValue() == 0 || time.triggeredValue() == 2) && !reloading)
+            (time.triggerValue() == 0 || time.triggerValue() == 2) && !reloading)
         {
             sound.PlayOneShot(emptyGunShot);
-            time.triggerTimer(shootingRate);
+            time.await(shootingRate);
         }
 
     }
@@ -114,12 +118,12 @@ public class weapon_gun : weapon
         if (noMag && reloading)
         {
             
-            if (time.triggeredValue() == 0 || time.triggeredValue() == 2)
+            if (time.triggerValue() == 0 || time.triggerValue() == 2)
             {
                 sound.PlayOneShot(bulletInsertingSound);
                 ammoInMag++;
                 reserve--;
-                time.triggerTimer(reloadingTime);
+                time.await(reloadingTime);
             }
             if (ammoInMag == magazineCapacity)
             {
@@ -130,12 +134,12 @@ public class weapon_gun : weapon
         }
         else if (!noMag && reloading)
         {
-            if (time.triggeredValue() == 0)
+            if (time.triggerValue() == 0)
             {
                 sound.PlayOneShot(reloadingSound);
-                time.triggerTimer(reloadingTime);
+                time.await(reloadingTime);
             }
-            else if (time.triggeredValue() == 2)
+            else if (time.triggerValue() == 2)
             {
                 reserve -= magazineCapacity - ammoInMag;
                 ammoInMag = magazineCapacity;

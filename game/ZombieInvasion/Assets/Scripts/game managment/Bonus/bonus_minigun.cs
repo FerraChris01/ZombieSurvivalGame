@@ -4,23 +4,33 @@ using UnityEngine;
 
 public class bonus_minigun : bonus
 {
+    #region Singleton
+    public static bonus_minigun instance;
+    void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
     [SerializeField] int duration;
-    [SerializeField] timer time;
+    [SerializeField] GameObject timerPrefab;
+    private Timer time;
     private bool minigunActive;
     private int temp;
 
     private void Start()
     {
+        time = Instantiate(timerPrefab).GetComponent<Timer>();
         minigunActive = false;
+        isSpawned = false;
         temp = 0;
     }
-    public override void tryToSpawn()
+    public void run()
     {
-        base.tryToSpawn();
         if (isSpawned)
         {
-            player_equipment.instance.switchGun(3);
             temp = player_equipment.instance.getSelectedGunIndex();
+            player_equipment.instance.switchGun(3);            
             minigunActive = true;
         }
     }
@@ -28,13 +38,14 @@ public class bonus_minigun : bonus
     {
         if (minigunActive)
         {
-            if (time.triggeredValue() == 0)
-                time.triggerTimer(duration);
-
-            if (time.triggeredValue() == 2)
+            if (time.triggerValue() == 0)
+                time.await(duration);
+            else if (time.triggerValue() == 2)
             {
                 player_equipment.instance.switchGun(temp);
+                Debug.Log("finito minigun");
                 minigunActive = false;
+                isSpawned = false;
             }
         }
     }

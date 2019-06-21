@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class bonus_full_ammo : bonus
 {
-    public override void tryToSpawn()
+    #region Singleton
+    public static bonus_full_ammo instance;
+    void Awake()
     {
-        base.tryToSpawn();
-        if (isSpawned)
-        {
-            foreach (weapon_gun gun in player_equipment.instance.getGuns())
-                gun.resetReserve();
-        }
+        instance = this;
+    }
+    #endregion
+
+    public void run()
+    {
+        foreach (weapon_gun gun in player_equipment.instance.getGuns())
+            gun.resetReserve();
+
+        isSpawned = false;
+        Debug.Log("max ammo");
     }
 }

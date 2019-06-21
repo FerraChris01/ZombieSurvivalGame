@@ -5,11 +5,19 @@ using UnityEngine.AI;
 
 public class enemy_entity : MonoBehaviour
 {
-    [SerializeField] timer time;
+    [SerializeField] GameObject timerPrefab;
+    private Timer time;
     [SerializeField] int timeBeforeDestroying;
     private int lifePoints;
     public bool isDead { get; set; }
-    
+
+    void Start()
+    {
+        time = Instantiate(timerPrefab).GetComponent<Timer>();
+        Game_manager.instance = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_manager>();
+        lifePoints = Game_manager.instance.getZombieLife();
+        isDead = false;
+    }
     public int getLifePoints()
     {
         return lifePoints;
@@ -21,30 +29,26 @@ public class enemy_entity : MonoBehaviour
     public void decLifePoints(int lp)
     {
         lifePoints -= lp;
-    }
-
-    void Start()
-    {
-        Game_manager.instance = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_manager>();
-        lifePoints = Game_manager.instance.getZombieLife();
-        isDead = false;
-    }
+    }    
 
     void Update()
     {
         if (lifePoints <= 0)
         {
-            if (time.triggeredValue() == 0)
+            if (time.triggerValue() == 0)
             {
                 isDead = true;
                 GetComponent<NavMeshAgent>().enabled = false;
                 GetComponent<BoxCollider>().enabled = false;
-                Game_manager.instance.decZombiesLeft();
+                Game_manager.instance.decZombiesLeft(transform.position);
                 player_entity.instance.incMoney(100);
-                time.triggerTimer(timeBeforeDestroying);
+                time.await(timeBeforeDestroying);
             }
-            else if (time.triggeredValue() == 2)
-                Destroy(this.gameObject); //da sostituire con l'animazione die 
+            else if (time.triggerValue() == 2)
+            {
+                time.destroyTimer();
+                Destroy(transform.parent.gameObject); //da sostituire con l'animazione die                 
+            }
         }        
     }
 }

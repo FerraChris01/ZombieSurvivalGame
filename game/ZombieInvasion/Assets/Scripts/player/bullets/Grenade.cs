@@ -7,7 +7,7 @@ public class Grenade : Bullet
     [SerializeField] int triggerTime;
     [SerializeField] float maxDistance;
     [SerializeField] float radius;
-    [SerializeField] GameObject explosionAnimation;
+    [SerializeField] GameObject explosive;
     private Vector3 center;
     private bool triggered;
     private Collider[] hitColliders;
@@ -34,9 +34,7 @@ public class Grenade : Bullet
     {
         triggered = true;
         center = transform.position;
-        
-        Instantiate(explosionAnimation, transform.position, transform.rotation);
-        explosionAnimation.GetComponent<ParticleSystem>().Play();
+        Instantiate(explosive, new Vector3(transform.position.x, transform.position.y + 20, transform.position.z), explosive.transform.rotation);
         hitColliders = Physics.OverlapSphere(center, radius);
         foreach (Collider c in hitColliders)
         {

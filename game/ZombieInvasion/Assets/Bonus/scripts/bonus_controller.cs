@@ -4,85 +4,69 @@ using UnityEngine;
 
 public class bonus_controller : MonoBehaviour
 {
-    [SerializeField] timer time;
-    [SerializeField] timer fadingTimer;
-    [SerializeField] int duration;
-    private bool triggered;
-    private bool fastFlashing;
+    [SerializeField] Animation anim;
 
-    private int counter;
-    private int bias;
-    private bool blink;
+    [SerializeField] GameObject timerPrefab;
+    [SerializeField] int duration;
+
+    [SerializeField] int bonusID;
+
+    private Timer time;
+
+    public bool triggered { get; set; }
+    public bool ending { get; set; }
+    
 
     private void Start()
     {
-        fadingTimer.triggerTimer(duration);
-        triggered = false;
-        fastFlashing = false;
-        counter = 0;
-        bias = 1000;
-        time.resetTimer();
-        blink = true;
+        time = Instantiate(timerPrefab).GetComponent<Timer>();
+        ending = false;        
     }
-    private void Update()
+    public void Update()
     {
         if (!triggered)
         {
-            if (time.triggeredValue() == 0)
+            if (!ending)
             {
-                time.triggerTimer(duration - 10000);
+                if (time.triggerValue() == 0)
+                {
+                    time.await(duration - (duration / 3));
+                    anim.Play("expand");
+                }
+                if (time.triggerValue() == 2)
+                {
+                    anim.Play("blink");
+                    time.resetTimer();
+                    ending = true;
+                }
             }
-            else if (time.triggeredValue() == 2 && !fastFlashing)
+            else
             {
-                fastFlashing = true;
-                time.triggerTimer(bias);
-                GetComponent<SpriteRenderer>().enabled = false;
-                counter += bias;
-                bias -= bias / 10;
-            }    
+                if (time.triggerValue() == 0)
+                    time.await(duration / 3);
 
-            if (fastFlashing)
-                blinkSprite();
-                
-            
+                if (time.triggerValue() == 2)
+                    Destroy(transform.parent.gameObject);
+            }
         }
+
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "player" || !triggered)
+        if (other.gameObject.tag == "player" && !triggered)
         {
             triggered = true;
-            Debug.Log("colliso");
-            //time.triggerTimer(duration - 10000);
+            if (bonusID == 0)
+                bonus_full_ammo.instance.run();
+            else if (bonusID == 1)
+                bonus_minigun.instance.run();
+            else if (bonusID == 2)
+                bonus_grenade_launcher.instance.run();
+
+            Debug.Log("bonus active");
+            Destroy(transform.parent.gameObject);
         }
 
-    }
-    private void blinkSprite()
-    {
-        if (fadingTimer.triggeredValue() == 1)
-        {
-            if (time.triggeredValue() == 2)
-            {
-                if (blink)
-                {
-                    GetComponent<SpriteRenderer>().enabled = true;
-                    blink = false;
-                }
-                else
-                {
-                    GetComponent<SpriteRenderer>().enabled = false;
-                    blink = true;
-                }
-
-                time.triggerTimer(bias);
-                counter += bias;
-                bias -= bias / 10;
-            }
-        }
-        else
-        {
-            Debug.Log("sparito");
-            Destroy(gameObject);
-        }
-    }
+    }    
 }

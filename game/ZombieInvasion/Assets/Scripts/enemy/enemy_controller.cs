@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class enemy_controller : MonoBehaviour
 {
-    [SerializeField] timer time;
+    [SerializeField] GameObject timerPrefab;
+    private Timer time;
     [SerializeField] float lookRadius = 10f;
     private Transform target;
     private NavMeshAgent agent;
@@ -14,6 +15,7 @@ public class enemy_controller : MonoBehaviour
 
     void Start()
     {
+        time = Instantiate(timerPrefab).GetComponent<Timer>();
         agent = GetComponent<NavMeshAgent>();
         speed = agent.speed;
         target = GameObject.FindGameObjectWithTag("player").transform;
@@ -31,18 +33,17 @@ public class enemy_controller : MonoBehaviour
                 agent.SetDestination(target.position);
                 if (distance <= agent.stoppingDistance)
                 {
-                    //agent.isStopped = true;
                     FaceTarget();
                     AttackTarget();
                 }
                 else
-                {
-                    //agent.isStopped = false;
+                
                     time.resetTimer();
-                }
+               
 
             }
         }
+        
     }
     
     void FaceTarget()
@@ -53,16 +54,16 @@ public class enemy_controller : MonoBehaviour
     }
     void AttackTarget()
     {
-        if (time.triggeredValue() == 0)
-            time.triggerTimer(250);
-        else if (time.triggeredValue() == 2)
+        if (time.triggerValue() == 0)
+            time.await(250);
+        else if (time.triggerValue() == 2)
         {
             if (player_entity.instance.getArmor() > 0)
                 player_entity.instance.decArmor(Game_manager.instance.getZombieDamage());
             else
                 player_entity.instance.decLife(Game_manager.instance.getZombieDamage());
 
-            time.triggerTimer(Game_manager.instance.getZombieAttackingRate());
+            time.await(Game_manager.instance.getZombieAttackingRate());
             
         }
 

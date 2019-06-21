@@ -3,16 +3,18 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class timer : MonoBehaviour
+public class Timer : MonoBehaviour
 {
-    public float timeLeft;
-    [SerializeField] int triggered; ///0 not triggered, 1 triggered timer is going, 2 timers has finished
+    private float timeLeft;
+    private int triggered; ///0 not triggered, 1 triggered timer is going, 2 timers has finished
 
     void Start()
     {
+        timeLeft = 0;
+        triggered = 0;
         resetTimer();
     }
-    public void triggerTimer(int towait)
+    public void await(int towait)
     {
         triggered = 1;
         timeLeft = towait / 1000f;
@@ -26,12 +28,16 @@ public class timer : MonoBehaviour
         StopCoroutine("LoseTime");
     }
 
-    public int triggeredValue()
+    public int triggerValue()
     {
         return triggered;
     }
     public void resetTimer()
     {
         triggered = 0;
+    }
+    public void destroyTimer()
+    {
+        Destroy(gameObject);
     }
 }

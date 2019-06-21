@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game_manager : MonoBehaviour
 {
@@ -19,11 +20,15 @@ public class Game_manager : MonoBehaviour
     [SerializeField] int playerArmour;
     [SerializeField] int zombieSpawningTimeRate;
     [SerializeField] store_manager store;
+    [SerializeField] Bonus_manager bonusManager;
+    [SerializeField] dataStorage data;
+    private int zombiesKilled;
     private int zombiesLeft;
     private int round;
 
     private void Start()
     {
+        zombiesKilled = 0;
         round = 1;
         zombiesLeft = zombiesNumber;
     }
@@ -31,9 +36,19 @@ public class Game_manager : MonoBehaviour
     {
         return zombiesLeft;
     }
-    public void decZombiesLeft()
+    public void endGame()
+    {
+        data.time = time_updater.instance.clock.toString();
+        data.rounds = round;
+        data.zombiesKilled = zombiesKilled;
+        SceneManager.LoadScene("endMenu");
+
+    }
+    public void decZombiesLeft(Vector3 zombiePos)
     {
         zombiesLeft--;
+        zombiesKilled++;
+        bonusManager.tryToSpawn(zombiePos);
     }
     public int getCurrentRound()
     {

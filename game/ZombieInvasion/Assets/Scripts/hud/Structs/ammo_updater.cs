@@ -4,9 +4,25 @@ using UnityEngine;
 
 public class ammo_updater : MonoBehaviour
 {
+    private UnityEngine.UI.Text magazineAmmo;
+    private UnityEngine.UI.Text reserveValue;
+    private void Start()
+    {
+        magazineAmmo = transform.Find("MagazineAmmo").GetComponent<UnityEngine.UI.Text>();
+        reserveValue = transform.Find("ReserveValue").GetComponent<UnityEngine.UI.Text>();
+    }
     void Update()
     {
-        transform.FindChild("MagazineAmmo").GetComponent<UnityEngine.UI.Text>().text = player_equipment.instance.getSelectedGun().getAmmoInMagazine().ToString();
-        transform.FindChild("ReserveValue").GetComponent<UnityEngine.UI.Text>().text = player_equipment.instance.getSelectedGun().getReserveAmmo().ToString();
+        string ma = "";
+        string rv = "";
+        if (player_equipment.instance.getSelectedGunIndex() == 3 || player_equipment.instance.getSelectedGunIndex() == 4)
+            ma = rv = "∞";
+        else
+        {
+            ma = player_equipment.instance.getSelectedGun().getAmmoInMagazine().ToString();
+            rv = player_equipment.instance.getSelectedGun().getReserve().ToString();
+        }
+        magazineAmmo.text = ma;
+        reserveValue.text = rv;        
     }
 }

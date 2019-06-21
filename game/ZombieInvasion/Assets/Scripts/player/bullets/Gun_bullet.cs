@@ -8,14 +8,8 @@ public class Gun_bullet : Bullet
 
     private void Start()
     {
+        Destroy(gameObject, 2);
         GetComponent<Rigidbody>().AddForce(transform.forward * BulletSpeed(), ForceMode.VelocityChange);
-    }
-    private void Update()
-    {
-        if (Time().triggeredValue() == 0)
-            Time().triggerTimer(2000);
-        else if (Time().triggeredValue() == 2)
-            Destroy(this.gameObject);
     }
     void OnCollisionEnter(Collision other)
     {

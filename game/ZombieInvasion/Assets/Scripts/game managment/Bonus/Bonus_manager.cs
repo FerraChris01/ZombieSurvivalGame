@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Bonus_manager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] bonus[] bonuses;
 
-    // Update is called once per frame
-    void Update()
+    public void tryToSpawn(Vector3 zombiePos)
     {
-        
+        int temp = Random.Range(0, bonuses.Length);
+        bonuses[temp].tryToSpawn(zombiePos);
     }
 }
