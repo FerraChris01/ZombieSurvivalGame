@@ -8,7 +8,7 @@ public class bonus : MonoBehaviour
     [SerializeField] GameObject bonusPrefab;
     protected bool isSpawned;
     
-    public void tryToSpawn(Vector3 zombiePos)
+    public virtual void tryToSpawn(Vector3 zombiePos)
     {
         if (!isSpawned)
         {
@@ -19,7 +19,6 @@ public class bonus : MonoBehaviour
                 isSpawned = true;
             }
         }
-
     }
     public float getSpawiningProbability()
     {
@@ -28,5 +27,9 @@ public class bonus : MonoBehaviour
     public void incSpawningProbability(int sp)
     {
         spawningProbability -= sp;
+    }
+    public bool IsSpawned()
+    {
+        return isSpawned;
     }
 }

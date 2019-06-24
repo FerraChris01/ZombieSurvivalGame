@@ -13,7 +13,7 @@ public class weapon_wheel_manager : MonoBehaviour
         {
             int s = GetComponent<RMF_RadialMenu>().getSelectedIndex() - 1;
             if (s != -1)
-                player_equipment.instance.switchGun(s);
+                player_equipment.instance.switchGun(s, false);
 
             wheel.gameObject.SetActive(false);
         }

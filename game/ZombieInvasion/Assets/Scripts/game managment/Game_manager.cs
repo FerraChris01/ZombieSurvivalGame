@@ -49,13 +49,17 @@ public class Game_manager : MonoBehaviour
         zombiesLeft--;
         zombiesKilled++;
         bonusManager.tryToSpawn(zombiePos);
+        if (zombiesLeft == 0)
+            startNewRound();
     }
     public int getCurrentRound()
     {
         return round;
     }
-    public void incRound()
+    public void startNewRound()
     {
+        zombiesLeft = zombiesNumber + (zombiesNumber / 3);
+        zombieLife += zombieLife / 3;
         round++;
     }
     public int getZombieSpawningTimeRate()

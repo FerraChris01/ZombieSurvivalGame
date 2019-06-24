@@ -37,8 +37,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -151,75 +151,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72668735}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &170076733
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 170076735}
-  - component: {fileID: 170076734}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &170076734
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170076733}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 1
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &170076735
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170076733}
-  m_LocalRotation: {x: 0.58491874, y: -0.25245565, z: 0.05703875, w: 0.76868904}
-  m_LocalPosition: {x: 273, y: 116.1, z: 255}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 68.131004, y: -59.638004, z: -33.88}
 --- !u!1 &325651949
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,10 +200,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guns:
-  - {fileID: 843591237279062369}
-  - {fileID: 7111634673482548588}
-  - {fileID: 4335680875828945006}
-  - {fileID: 8633842549572063808}
+  - {fileID: 843591237279062374}
+  - {fileID: 7111634673482548586}
+  - {fileID: 4335680875828944996}
+  bonusGuns:
+  - {fileID: 8633842549572063814}
   - {fileID: 835582158}
   melee: {fileID: 0}
 --- !u!1 &433574950
@@ -304,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6882979814d574db0465927254f792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawningProbability: 1
+  spawningProbability: 10
   bonusPrefab: {fileID: 1533409585646135894, guid: 853da09cb4e3709458a423a534b6bcd7,
     type: 3}
   duration: 30000
@@ -443,7 +375,7 @@ Transform:
   m_LocalScale: {x: 5.7370915, y: 39.323093, z: 275.5048}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &835582155
 GameObject:
@@ -586,32 +518,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 835582155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5eca14b4e2807f41bc8b7d3a0d17b16, type: 3}
+  m_Script: {fileID: 11500000, guid: d54167c8a69157b41997acb7eb46f415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  wName: grenade launcher
+  WeaponName: Grenade launcher
   price: 0
-  fadingCoefficient: 0.4
-  gunType: 5
+  fadingCoefficient: 0.5
+  weight: 0.8
   timerPrefab: {fileID: 2007910503661532075, guid: 13b440c523e5d354faf5864ef8ecf5f9,
     type: 3}
-  bullet: {fileID: 0}
-  grenade: {fileID: 1865864866422106533, guid: 0ca835ff91a151c4d8380acccbd9a383, type: 3}
+  bullet: {fileID: 1865864866422106533, guid: 0ca835ff91a151c4d8380acccbd9a383, type: 3}
   spawnPoint: {fileID: 72668735}
-  shootingRate: 1000
+  shootingRate: 1500
   singleShot: 1
-  reserveAmmo: 0
-  magazineCapacity: 0
-  reloadingTime: 0
   sound: {fileID: 835582157}
   shootingSound: {fileID: 8300000, guid: 3bf887d0f4f9a484684a0591702e9103, type: 3}
-  reloadingSound: {fileID: 0}
-  bulletInsertingSound: {fileID: 0}
-  emptyGunShot: {fileID: 8300000, guid: 39e0f7fcb4250804faaa45cd31438198, type: 3}
-  noMag: 0
   isBought: 0
-  isBonus: 2
+  bonus: 2
 --- !u!65 &835582159
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -759,7 +683,7 @@ Transform:
   m_LocalScale: {x: 5.7370915, y: 39.323093, z: 275.5048}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &872175176
 GameObject:
@@ -790,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc93f0aab42b6134298f6106196337f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawningProbability: 1
+  spawningProbability: 10
   bonusPrefab: {fileID: 3233112392172490489, guid: c47411dc1d41e6a4687d5cfb94abe1af,
     type: 3}
 --- !u!4 &872175178
@@ -819,7 +743,6 @@ GameObject:
   - component: {fileID: 1046989780}
   - component: {fileID: 1046989779}
   - component: {fileID: 1046989782}
-  - component: {fileID: 1046989783}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -889,7 +812,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1046989782
 MonoBehaviour:
@@ -905,18 +828,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1880072605}
   smoothTime: 0
---- !u!114 &1046989783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1046989778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4eeac98074d65f44baf4d22f245dfba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1155781675
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,7 +901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec541038a47e8c489a70be2c4269158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawningProbability: 1
+  spawningProbability: 10
   bonusPrefab: {fileID: 750253912972440323, guid: 6aca6492567cae147b0d918112c726c9,
     type: 3}
   duration: 30000
@@ -1054,7 +965,7 @@ Terrain:
     serializedVersion: 2
     rgba: 4286545791
   m_LegacyShininess: 0.078125
-  m_MaterialTemplate: {fileID: 2100000, guid: e9de2a8eea23e294ea92482ee6b728e5, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 197814235e18ca040ba2d185c6015a15, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_ScaleInLightmap: 0.1024
@@ -1073,7 +984,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1336481510
 GameObject:
@@ -1169,7 +1080,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1527005208
 GameObject:
@@ -1260,7 +1171,7 @@ Transform:
   m_LocalScale: {x: 5.7370915, y: 40, z: 275.5048}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658119101
 GameObject:
@@ -1315,7 +1226,7 @@ Transform:
   - {fileID: 1336481511}
   - {fileID: 1155781676}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1813158739
 GameObject:
@@ -1453,8 +1364,9 @@ Transform:
   m_LocalScale: {x: 8.916677, y: 8.916681, z: 8.916681}
   m_Children:
   - {fileID: 325651950}
+  - {fileID: 1920370953}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1880072611
 MonoBehaviour:
@@ -1495,6 +1407,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4071851a7e9ca7f439d2a743fbccd42f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1920370952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1920370953}
+  - component: {fileID: 1920370954}
+  m_Layer: 11
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1920370953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920370952}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1880072610}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!108 &1920370954
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920370952}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.7
+  m_Range: 80
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &1978831116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,7 +1517,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1992115980
 GameObject:
@@ -1640,7 +1621,7 @@ Transform:
   m_Children:
   - {fileID: 1992115982}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &227486500533782700
 RectTransform:
@@ -1679,41 +1660,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &843591237279062369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843591237279062372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5eca14b4e2807f41bc8b7d3a0d17b16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
-  wName: glock
-  price: 0
-  fadingCoefficient: 0.2
-  gunType: 1
-  timerPrefab: {fileID: 2007910503661532075, guid: 13b440c523e5d354faf5864ef8ecf5f9,
-    type: 3}
-  bullet: {fileID: 9001339409874366989, guid: fe2690afc97603045babc0260e1522e2, type: 3}
-  grenade: {fileID: 0}
-  spawnPoint: {fileID: 843591237541499908}
-  shootingRate: 150
-  singleShot: 1
-  reserveAmmo: 340
-  magazineCapacity: 20
-  reloadingTime: 2400
-  sound: {fileID: 4210235238120829699}
-  shootingSound: {fileID: 8300000, guid: 8db055155e441554381aaa2d672a8b14, type: 3}
-  reloadingSound: {fileID: 8300000, guid: 7ebb69b0633e90e4683881433fda02f0, type: 3}
-  bulletInsertingSound: {fileID: 0}
-  emptyGunShot: {fileID: 8300000, guid: 39e0f7fcb4250804faaa45cd31438198, type: 3}
-  noMag: 0
-  isBought: 1
-  isBonus: 0
 --- !u!1 &843591237279062372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,8 +1671,8 @@ GameObject:
   - component: {fileID: 843591237279062373}
   - component: {fileID: 843591237279062380}
   - component: {fileID: 843591237279062383}
+  - component: {fileID: 843591237279062374}
   - component: {fileID: 843591237279062382}
-  - component: {fileID: 843591237279062369}
   - component: {fileID: 4210235238120829699}
   m_Layer: 12
   m_Name: glock
@@ -1750,6 +1696,37 @@ Transform:
   m_Father: {fileID: 325651950}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &843591237279062374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843591237279062372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68659210c1f281498a5335dc3d1e9f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  WeaponName: Glock
+  price: 0
+  fadingCoefficient: 0.15
+  weight: 0.85
+  timerPrefab: {fileID: 2007910503661532075, guid: 13b440c523e5d354faf5864ef8ecf5f9,
+    type: 3}
+  bullet: {fileID: 9001339409874366989, guid: fe2690afc97603045babc0260e1522e2, type: 3}
+  spawnPoint: {fileID: 843591237541499908}
+  shootingRate: 200
+  singleShot: 1
+  sound: {fileID: 4210235238120829699}
+  shootingSound: {fileID: 8300000, guid: 8db055155e441554381aaa2d672a8b14, type: 3}
+  isBought: 0
+  reloadingTime: 2400
+  reserveAmmo: 70
+  magazineCapacity: 20
+  emptyGunShot: {fileID: 8300000, guid: 39e0f7fcb4250804faaa45cd31438198, type: 3}
+  reloadingSound: {fileID: 8300000, guid: 7ebb69b0633e90e4683881433fda02f0, type: 3}
 --- !u!33 &843591237279062380
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1943,7 +1920,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2094,7 +2071,7 @@ GameObject:
   - component: {fileID: 4335680875828945007}
   - component: {fileID: 4335680875828945004}
   - component: {fileID: 4335680875828945005}
-  - component: {fileID: 4335680875828945006}
+  - component: {fileID: 4335680875828944996}
   - component: {fileID: 8156537200742299351}
   m_Layer: 12
   m_Name: shotgun
@@ -2103,6 +2080,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4335680875828944996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335680875828944995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eabb71cdec447f4ea81ac2ee29c4367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 140
+  WeaponName: Remington 870
+  price: 0
+  fadingCoefficient: 0.1
+  weight: 0.8
+  timerPrefab: {fileID: 2007910503661532075, guid: 13b440c523e5d354faf5864ef8ecf5f9,
+    type: 3}
+  bullet: {fileID: 9001339409874366989, guid: fe2690afc97603045babc0260e1522e2, type: 3}
+  spawnPoint: {fileID: 4335680874124048611}
+  shootingRate: 1200
+  singleShot: 1
+  sound: {fileID: 8156537200742299351}
+  shootingSound: {fileID: 8300000, guid: 909062d5fd4296a429c61694e9eeb0e7, type: 3}
+  isBought: 0
+  reloadingTime: 370
+  reserveAmmo: 130
+  magazineCapacity: 12
+  emptyGunShot: {fileID: 8300000, guid: 39e0f7fcb4250804faaa45cd31438198, type: 3}
+  bulletInsertingSound: {fileID: 8300000, guid: a307ed52ceb566f4097dda66e076a930,
+    type: 3}
 --- !u!23 &4335680875828945004
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2153,42 +2162,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4335680875828945006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335680875828944995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5eca14b4e2807f41bc8b7d3a0d17b16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 110
-  wName: shotgun
-  price: 1500
-  fadingCoefficient: 0.3
-  gunType: 3
-  timerPrefab: {fileID: 2007910503661532075, guid: 13b440c523e5d354faf5864ef8ecf5f9,
-    type: 3}
-  bullet: {fileID: 9001339409874366989, guid: fe2690afc97603045babc0260e1522e2, type: 3}
-  grenade: {fileID: 0}
-  spawnPoint: {fileID: 4335680874124048611}
-  shootingRate: 1000
-  singleShot: 1
-  reserveAmmo: 70
-  magazineCapacity: 12
-  reloadingTime: 300
-  sound: {fileID: 8156537200742299351}
-  shootingSound: {fileID: 8300000, guid: 909062d5fd4296a429c61694e9eeb0e7, type: 3}
-  reloadingSound: {fileID: 0}
-  bulletInsertingSound: {fileID: 8300000, guid: a307ed52ceb566f4097dda66e076a930,
-    type: 3}
-  emptyGunShot: {fileID: 8300000, guid: 39e0f7fcb4250804faaa45cd31438198, type: 3}
-  noMag: 1
-  isBought: 0
-  isBonus: 0
 --- !u!33 &4335680875828945007
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3060,7 +3033,7 @@ RectTransform:
   - {fileID: 5446997738437583942}
   - {fileID: 5446997737558743912}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5061,7 +5034,7 @@ GameObject:
   - component: {fileID: 7111634673482548577}
   - component: {fileID: 7111634673482548578}
   - component: {fileID: 7111634673482548579}
-  - component: {fileID: 7111634673482548588}
+  - component: {fileID: 7111634673482548586}
   - component: {fileID: 7420999679459150588}
   m_Layer: 12
   m_Name: ak-47
@@ -5070,7 +5043,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7111634673482548588
+--- !u!114 &7111634673482548586
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5079,32 +5052,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 7111634673482548585}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5eca14b4e2807f41bc8b7d3a0d17b16, type: 3}
+  m_Script: {fileID: 11500000, guid: c68659210c1f281498a5335dc3d1e9f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 35
-  wName: ak-47
-  price: 2500
+  damage: 40
+  WeaponName: AK-47
+  price: 0
   fadingCoefficient: 0.1
-  gunType: 2
+  weight: 0.75
   timerPrefab: {fileID: 2007910503661532075, guid: 13b440c523e5d354faf5864ef8ecf5f9,
     type: 3}
   bullet: {fileID: 9001339409874366989, guid: fe2690afc97603045babc0260e1522e2, type: 3}
-  grenade: {fileID: 0}
   spawnPoint: {fileID: 7111634673220634633}
   shootingRate: 100
   singleShot: 0
-  reserveAmmo: 340
-  magazineCapacity: 30
-  reloadingTime: 3700
   sound: {fileID: 7420999679459150588}
   shootingSound: {fileID: 8300000, guid: 3cc22fd9a9af17147b00ccc66651cd27, type: 3}
-  reloadingSound: {fileID: 8300000, guid: dca7e99ffac5b954ba32045c516285cd, type: 3}
-  bulletInsertingSound: {fileID: 0}
-  emptyGunShot: {fileID: 8300000, guid: 39e0f7fcb4250804faaa45cd31438198, type: 3}
-  noMag: 0
   isBought: 0
-  isBonus: 0
+  reloadingTime: 3600
+  reserveAmmo: 400
+  magazineCapacity: 30
+  emptyGunShot: {fileID: 8300000, guid: 39e0f7fcb4250804faaa45cd31438198, type: 3}
+  reloadingSound: {fileID: 8300000, guid: dca7e99ffac5b954ba32045c516285cd, type: 3}
 --- !u!222 &7300577503249515595
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5457,41 +5426,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &8633842549572063808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8633842549572063813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5eca14b4e2807f41bc8b7d3a0d17b16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 80
-  wName: minigun
-  price: 2500
-  fadingCoefficient: 0
-  gunType: 4
-  timerPrefab: {fileID: 2007910503661532075, guid: 13b440c523e5d354faf5864ef8ecf5f9,
-    type: 3}
-  bullet: {fileID: 9001339409874366989, guid: fe2690afc97603045babc0260e1522e2, type: 3}
-  grenade: {fileID: 0}
-  spawnPoint: {fileID: 8633842549826051877}
-  shootingRate: 50
-  singleShot: 0
-  reserveAmmo: 9000
-  magazineCapacity: 9000
-  reloadingTime: 0
-  sound: {fileID: 8330718006758956496}
-  shootingSound: {fileID: 8300000, guid: 4300b9c028e568849bc7f4f83d31c3df, type: 3}
-  reloadingSound: {fileID: 8300000, guid: dca7e99ffac5b954ba32045c516285cd, type: 3}
-  bulletInsertingSound: {fileID: 0}
-  emptyGunShot: {fileID: 8300000, guid: 39e0f7fcb4250804faaa45cd31438198, type: 3}
-  noMag: 0
-  isBought: 0
-  isBonus: 1
 --- !u!4 &8633842549572063812
 Transform:
   m_ObjectHideFlags: 0
@@ -5518,8 +5452,8 @@ GameObject:
   - component: {fileID: 8633842549572063812}
   - component: {fileID: 8633842549572063821}
   - component: {fileID: 8633842549572063822}
+  - component: {fileID: 8633842549572063814}
   - component: {fileID: 8633842549572063823}
-  - component: {fileID: 8633842549572063808}
   - component: {fileID: 8330718006758956496}
   m_Layer: 12
   m_Name: minigun
@@ -5528,6 +5462,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8633842549572063814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633842549572063813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54167c8a69157b41997acb7eb46f415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  WeaponName: Minigun
+  price: 0
+  fadingCoefficient: 0.01
+  weight: 0.5
+  timerPrefab: {fileID: 2007910503661532075, guid: 13b440c523e5d354faf5864ef8ecf5f9,
+    type: 3}
+  bullet: {fileID: 9001339409874366989, guid: fe2690afc97603045babc0260e1522e2, type: 3}
+  spawnPoint: {fileID: 8633842549826051877}
+  shootingRate: 50
+  singleShot: 0
+  sound: {fileID: 8330718006758956496}
+  shootingSound: {fileID: 8300000, guid: 4300b9c028e568849bc7f4f83d31c3df, type: 3}
+  isBought: 0
+  bonus: 1
 --- !u!33 &8633842549572063821
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -5,156 +5,23 @@ using UnityEngine;
 public class weapon_gun : weapon
 {
     [SerializeField] GameObject timerPrefab;
+    private Timer clock;
 
-    private Timer time;
-    [SerializeField] Gun_bullet bullet;
-    [SerializeField] Grenade grenade;
+    [SerializeField] Bullet bullet;
     [SerializeField] GameObject spawnPoint;
     [SerializeField] int shootingRate;
     [SerializeField] bool singleShot;
-    [SerializeField] int reserveAmmo;
-    [SerializeField] int magazineCapacity;
-    [SerializeField] int reloadingTime;
     [SerializeField] AudioSource sound;
     [SerializeField] AudioClip shootingSound;
-    [SerializeField] AudioClip reloadingSound;
-    [SerializeField] AudioClip bulletInsertingSound;
-    [SerializeField] AudioClip emptyGunShot;
-    [SerializeField] bool noMag;
     [SerializeField] bool isBought;
-    [SerializeField] int isBonus;   //0 for normal gun, 1 for minigun, 2 for grenade launcher
-    //[SerializeField] Sprite indicator;
-    private bool reloading;
-    private int ammoInMag;
-    private int reserve;
 
-    
-    public bool IsBought()
-    {
-        return isBought;
-    }
-    public void setBought()
-    {
-        isBought = true;
-    }
-    public bool isReloading()
-    {
-        return reloading;
-    }
-    public void setReserveAmmo(int tot)
-    {
-        reserveAmmo = tot;
-    }
-    public int getReserve()
-    {
-        return reserve;
-    }
-    public int getAmmoInMagazine()
-    {
-        return ammoInMag;
-    }
-    private void Start()
-    {
-        time = Instantiate(timerPrefab).GetComponent<Timer>();
-        if (isBonus == 1)
-            setDamage(Game_manager.instance.getZombieLife() / 2);
-        else if (isBonus == 2)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(transform.position);
-        }
-
-        if (isBonus == 1 || isBonus == 2)
-            ammoInMag = 1;
-        else
-        {
-            reserve = reserveAmmo;
-            reload();
-        }
-    }
-    public override void fire()
-    {
-        if (((singleShot && Input.GetKeyDown(KeyCode.Mouse0)) || (!singleShot && Input.GetKey(KeyCode.Mouse0))) && ammoInMag > 0 &&
-            (time.triggerValue() == 0 || time.triggerValue() == 2) && !reloading)
-        {
-            sound.PlayOneShot(shootingSound);
-            if (isBonus == 2)
-            {
-                Grenade nGranade = Instantiate(grenade, spawnPoint.transform.position, spawnPoint.transform.rotation);
-                time.await(shootingRate);
-            }
-            else
-            {                
-                Gun_bullet nBullet = Instantiate(bullet, spawnPoint.transform.position, spawnPoint.transform.rotation);
-                nBullet.setDamage(getDamage(), transform.position, getFadingCoefficient());
-                time.await(shootingRate);
-                if (isBonus == 0)
-                    ammoInMag--;
-            }
-        }
-        else if (((singleShot && Input.GetKeyDown(KeyCode.Mouse0)) || (!singleShot && Input.GetKey(KeyCode.Mouse0))) && ammoInMag == 0 &&
-            (time.triggerValue() == 0 || time.triggerValue() == 2) && !reloading)
-        {
-            sound.PlayOneShot(emptyGunShot);
-            time.await(shootingRate);
-        }
-
-    }
-    public void reload()
-    {
-        if (!reloading && ammoInMag < magazineCapacity)
-        {
-            reloading = true;
-            time.resetTimer();
-        }
-
-    }
-    public void resetReserve()
-    {
-        reserve = reserveAmmo;
-    }
-
-    private void Update()
-    {
-        if (noMag && reloading)
-        {
-            
-            if (time.triggerValue() == 0 || time.triggerValue() == 2)
-            {
-                sound.PlayOneShot(bulletInsertingSound);
-                ammoInMag++;
-                reserve--;
-                time.await(reloadingTime);
-            }
-            if (ammoInMag == magazineCapacity)
-            {
-                reloading = false;
-                time.resetTimer();
-            }
-
-        }
-        else if (!noMag && reloading)
-        {
-            if (time.triggerValue() == 0)
-            {
-                sound.PlayOneShot(reloadingSound);
-                time.await(reloadingTime);
-            }
-            else if (time.triggerValue() == 2)
-            {
-                reserve -= magazineCapacity - ammoInMag;
-                ammoInMag = magazineCapacity;
-                time.resetTimer();
-                reloading = false;
-            }
-
-        }
-    }
-    public void abortReloading()
-    {
-        if (reloading)
-        {
-            reloading = false;
-            time.resetTimer();
-        }
-    }
+    public Bullet Bullet { get => bullet; set => bullet = value; }
+    public GameObject SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
+    public int ShootingRate { get => shootingRate; set => shootingRate = value; }
+    public bool SingleShot { get => singleShot; set => singleShot = value; }
+    public AudioSource Sound { get => sound; set => sound = value; }
+    public AudioClip ShootingSound { get => shootingSound; set => shootingSound = value; }
+    public bool IsBought { get => isBought; set => isBought = value; }
+    public GameObject TimerPrefab { get => timerPrefab; set => timerPrefab = value; }
+    public Timer Clock { get => clock; set => clock = value; }
 }

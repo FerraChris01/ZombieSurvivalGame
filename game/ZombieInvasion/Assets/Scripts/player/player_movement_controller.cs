@@ -4,18 +4,31 @@ using UnityEngine;
 
 public class player_movement_controller : MonoBehaviour
 {
-    public int speed;
-    public bool canMove;
+    #region Singleton
+    public static player_movement_controller instance;
+    void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+    [SerializeField] float speed;
+    [SerializeField] bool canMove;
+    public bool CanMove { get => canMove; set => canMove = value; }
+    public float PlayerSpeed { get => playerSpeed; set => playerSpeed = value; }
+
+    private float playerSpeed;
+
     void Start()
     {
+        playerSpeed = speed;
         Cursor.visible = false;
-        speed = 1;
         canMove = true;
     }
     void Update()
     {
         faceMouse();
         move();
+        Debug.Log("speed: " + playerSpeed);
     }
     void faceMouse()
     {
@@ -30,20 +43,24 @@ public class player_movement_controller : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                transform.position += new Vector3(0, 0, speed);
+                transform.position += new Vector3(0, 0, playerSpeed);
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                transform.position -= new Vector3(0, 0, speed);
+                transform.position -= new Vector3(0, 0, playerSpeed);
             }
             if (Input.GetKey(KeyCode.D))
             {
-                transform.position += new Vector3(speed, 0, 0);
+                transform.position += new Vector3(playerSpeed, 0, 0);
             }
             if (Input.GetKey(KeyCode.A))
             {
-                transform.position -= new Vector3(speed, 0, 0);
+                transform.position -= new Vector3(playerSpeed, 0, 0);
             }
         }
+    }
+    public void resetSpeed()
+    {
+        playerSpeed = speed;
     }
 }

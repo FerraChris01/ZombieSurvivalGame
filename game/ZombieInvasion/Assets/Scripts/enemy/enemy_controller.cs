@@ -37,8 +37,7 @@ public class enemy_controller : MonoBehaviour
                     AttackTarget();
                 }
                 else
-                
-                    time.resetTimer();
+                   time.resetTimer();
                
 
             }
@@ -55,7 +54,7 @@ public class enemy_controller : MonoBehaviour
     void AttackTarget()
     {
         if (time.triggerValue() == 0)
-            time.await(250);
+            time.await(1000);        
         else if (time.triggerValue() == 2)
         {
             if (player_entity.instance.getArmor() > 0)
@@ -64,7 +63,6 @@ public class enemy_controller : MonoBehaviour
                 player_entity.instance.decLife(Game_manager.instance.getZombieDamage());
 
             time.await(Game_manager.instance.getZombieAttackingRate());
-            
         }
 
 

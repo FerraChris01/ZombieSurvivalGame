@@ -16,9 +16,9 @@ public class Gun_bullet : Bullet
         if (other.gameObject.tag == "enemy")
         {
             float offset = Vector3.Distance(weaponPosition, other.gameObject.transform.position);
-            other.gameObject.GetComponent<enemy_entity>().decLifePoints(Damage() - (int)(offset * FadingK()));
-            Destroy(gameObject);
+            other.gameObject.GetComponent<enemy_entity>().decLifePoints(Damage() - (int)(offset * FadingK()));            
         }
+        Destroy(gameObject);
     }
     public void setDamage(int weaponDamage, Vector3 weaponPosition, float fk)
     {

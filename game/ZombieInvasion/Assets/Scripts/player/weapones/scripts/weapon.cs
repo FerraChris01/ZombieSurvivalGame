@@ -5,11 +5,12 @@ using UnityEngine;
 public class weapon : MonoBehaviour
 {
     [SerializeField] int damage;
-    [SerializeField] string wName;
+    [SerializeField] string WeaponName;
     [SerializeField] int price;
     [SerializeField] float fadingCoefficient;
-    [SerializeField] int gunType;
+    [SerializeField] float weight;
     private int level;
+    public float Weight { get => weight; set => weight = value; }
 
     private void Start()
     {
@@ -36,7 +37,6 @@ public class weapon : MonoBehaviour
     {
         fadingCoefficient -= fk;
     }
-
     public int getLevel()
     {
         return level;
@@ -52,10 +52,6 @@ public class weapon : MonoBehaviour
     public float getFadingCoefficient()
     {
         return fadingCoefficient;
-    }
-    public int getGunType()
-    {
-        return gunType;
     }
 
     public virtual void fire()

@@ -18,6 +18,11 @@ public class bonus_grenade_launcher : bonus
     private bool grenadeLauncher;
     private int temp;
 
+    public override void tryToSpawn(Vector3 zombiePos)
+    {
+        if (!bonus_minigun.instance.IsSpawned())
+            base.tryToSpawn(zombiePos);
+    }
     private void Start()
     {
         time = Instantiate(timerPrefab).GetComponent<Timer>();
@@ -27,10 +32,10 @@ public class bonus_grenade_launcher : bonus
     }
     public void run()
     {
-        if (isSpawned)
+        if (isSpawned && !bonus_minigun.instance.IsSpawned())
         {
             temp = player_equipment.instance.getSelectedGunIndex();
-            player_equipment.instance.switchGun(4);            
+            player_equipment.instance.switchToBonus(4);            
             grenadeLauncher = true;
         }
     }
@@ -42,7 +47,7 @@ public class bonus_grenade_launcher : bonus
                 time.await(duration);
             else if (time.triggerValue() == 2)
             {
-                player_equipment.instance.switchGun(temp);
+                player_equipment.instance.switchGun(temp, true);
                 grenadeLauncher = false;
                 isSpawned = false;
             }

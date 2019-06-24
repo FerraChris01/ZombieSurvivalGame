@@ -15,9 +15,9 @@ public class ammo_updater : MonoBehaviour
     {
         string ma = "";
         string rv = "";
-        if (player_equipment.instance.getSelectedGunIndex() == 3 || player_equipment.instance.getSelectedGunIndex() == 4)
+        if (player_equipment.instance.getSelectedWeaponKind() == 2)
             ma = rv = "∞";
-        else
+        else if (player_equipment.instance.getSelectedWeaponKind() == 0)
         {
             ma = player_equipment.instance.getSelectedGun().getAmmoInMagazine().ToString();
             rv = player_equipment.instance.getSelectedGun().getReserve().ToString();

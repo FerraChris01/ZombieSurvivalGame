@@ -10,10 +10,10 @@ public class bonus_controller : MonoBehaviour
     [SerializeField] int duration;
 
     [SerializeField] int bonusID;
+    [SerializeField] bool isMod;
 
     private Timer time;
 
-    public bool triggered { get; set; }
     public bool ending { get; set; }
     
 
@@ -24,39 +24,41 @@ public class bonus_controller : MonoBehaviour
     }
     public void Update()
     {
-        if (!triggered)
-        {
-            if (!ending)
-            {
-                if (time.triggerValue() == 0)
-                {
-                    time.await(duration - (duration / 3));
-                    anim.Play("expand");
-                }
-                if (time.triggerValue() == 2)
-                {
-                    anim.Play("blink");
-                    time.resetTimer();
-                    ending = true;
-                }
-            }
-            else
-            {
-                if (time.triggerValue() == 0)
-                    time.await(duration / 3);
 
-                if (time.triggerValue() == 2)
-                    Destroy(transform.parent.gameObject);
+        if (!ending)
+        {
+            if (time.triggerValue() == 0)
+            {
+                time.await(duration - (duration / 3));
+                anim.Play("expand");
+            }
+            if (time.triggerValue() == 2)
+            {
+                if (isMod)
+                    anim.Play("blinkMod");
+                else
+                    anim.Play("blink");
+
+                time.resetTimer();
+                ending = true;
             }
         }
+        else
+        {
+            if (time.triggerValue() == 0)
+                time.await(duration / 3);
+
+            if (time.triggerValue() == 2)
+                Destroy(transform.parent.gameObject);
+        }
+        
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "player" && !triggered)
+        if (other.gameObject.tag == "player")
         {
-            triggered = true;
             if (bonusID == 0)
                 bonus_full_ammo.instance.run();
             else if (bonusID == 1)

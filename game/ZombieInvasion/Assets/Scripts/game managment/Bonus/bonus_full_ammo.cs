@@ -14,7 +14,7 @@ public class bonus_full_ammo : bonus
 
     public void run()
     {
-        foreach (weapon_gun gun in player_equipment.instance.getGuns())
+        foreach (weapon_gun_default gun in player_equipment.instance.getGuns())
             gun.resetReserve();
 
         isSpawned = false;

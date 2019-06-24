@@ -25,12 +25,18 @@ public class bonus_minigun : bonus
         isSpawned = false;
         temp = 0;
     }
+    public override void tryToSpawn(Vector3 zombiePos)
+    {
+        if (!bonus_grenade_launcher.instance.IsSpawned())
+            base.tryToSpawn(zombiePos);
+    }
     public void run()
     {
         if (isSpawned)
         {
             temp = player_equipment.instance.getSelectedGunIndex();
-            player_equipment.instance.switchGun(3);            
+            Debug.Log("temp: " + temp);
+            player_equipment.instance.switchToBonus(3);            
             minigunActive = true;
         }
     }
@@ -42,7 +48,7 @@ public class bonus_minigun : bonus
                 time.await(duration);
             else if (time.triggerValue() == 2)
             {
-                player_equipment.instance.switchGun(temp);
+                player_equipment.instance.switchGun(temp, true);
                 Debug.Log("finito minigun");
                 minigunActive = false;
                 isSpawned = false;

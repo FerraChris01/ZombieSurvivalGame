@@ -369,7 +369,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0fae8c751d4f0394ab861900ee2ca875, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerPrefab: {fileID: 2007910503661532075, guid: 13b440c523e5d354faf5864ef8ecf5f9,
     type: 3}
-  lookRadius: 100
+  lookRadius: 200
 --- !u!114 &3228834734762062228
 MonoBehaviour:
   m_ObjectHideFlags: 0

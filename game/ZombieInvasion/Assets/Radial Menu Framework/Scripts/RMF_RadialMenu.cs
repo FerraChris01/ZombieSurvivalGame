@@ -88,7 +88,7 @@ public class RMF_RadialMenu : MonoBehaviour {
 
     void Start() {
 
-
+        Cursor.visible = false;
         if (useGamepad) {
             EventSystem.current.SetSelectedGameObject(gameObject, null); //We'll make this the active object when we start it. Comment this line to set it manually from another script.
             if (useSelectionFollower && selectionFollowerContainer != null)

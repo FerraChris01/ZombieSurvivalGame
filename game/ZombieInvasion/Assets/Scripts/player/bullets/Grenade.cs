@@ -15,7 +15,6 @@ public class Grenade : Bullet
     private void Start()
     {
         setDamage((int)(Game_manager.instance.getZombieLife() * 1.5f));
-        setFadingK(player_equipment.instance.getSelectedGun().getFadingCoefficient());
         GetComponent<Rigidbody>().AddForce(transform.forward * BulletSpeed(), ForceMode.VelocityChange);
         triggered = false;
     }
