@@ -12,6 +12,6 @@ public class money_updater : MonoBehaviour
 
     void Update()
     {
-        txt.text = player_entity.instance.getMoney().ToString() + " $";
+        txt.text = player_entity.instance.Money.ToString() + " $";
     }
 }

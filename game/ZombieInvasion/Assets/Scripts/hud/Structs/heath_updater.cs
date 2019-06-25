@@ -6,6 +6,6 @@ public class heath_updater : MonoBehaviour
 {
     void Update()
     {
-        GetComponent<SimpleHealthBar>().UpdateBar(player_entity.instance.getLife(), player_entity.instance.getMaxLife());
+        GetComponent<SimpleHealthBar>().UpdateBar(player_entity.instance.Life, player_entity.instance.MaxLife);
     }
 }

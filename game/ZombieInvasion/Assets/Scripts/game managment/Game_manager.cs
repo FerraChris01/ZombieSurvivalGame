@@ -22,18 +22,21 @@ public class Game_manager : MonoBehaviour
     [SerializeField] store_manager store;
     [SerializeField] Bonus_manager bonusManager;
     [SerializeField] dataStorage data;
+    [SerializeField] bool isPaused;
+
     private int zombiesKilled;
     private int zombiesLeft;
     private int round;
     private bool roundIsOver;
-    private bool isPaused;
+    
 
     public bool IsPaused { get => isPaused; set => isPaused = value; }
     public bool RoundIsOver { get => roundIsOver; set => roundIsOver = value; }
 
     private void Start()
     {
-        isPaused = false;
+        Cursor.visible = true;
+        Shop_menu_manager.instance.Awaken();
         roundIsOver = false;
         zombiesKilled = 0;
         round = 1;

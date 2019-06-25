@@ -18,6 +18,13 @@ public class player_entity : MonoBehaviour
     private int score;
     private int money;
 
+    public int Life { get => life; set => life = value; }
+    public int Armour { get => armour; set => armour = value; }
+    public int MaxLife { get => maxLife; set => maxLife = value; }
+    public int MaxArmour { get => maxArmour; set => maxArmour = value; }
+    public int Score { get => score; set => score = value; }
+    public int Money { get => money; set => money = value; }
+
     private void Start()
     {
         score = 0;
@@ -26,29 +33,13 @@ public class player_entity : MonoBehaviour
         maxLife = life;
         maxArmour = armour;
     }
-    public int getMoney()
-    {
-        return money;
-    }
     public void incMoney(int m)
     {
         money += m;
     }
-    public int getMaxLife()
-    {
-        return maxLife;
-    }
     public void incScore(int s)
     {
         score += s;
-    }
-    public int getScore()
-    {
-        return score;
-    }
-    public int getLife()
-    {
-        return life;
     }
     public void decLife(int lf)
     {
@@ -56,14 +47,6 @@ public class player_entity : MonoBehaviour
         if (life <= 0)
             Game_manager.instance.endGame();
 
-    }
-    public int getArmor()
-    {
-        return armour;
-    }
-    public int getMaxArmour()
-    {
-        return maxArmour;
     }
     public void decArmor(int a)
     {

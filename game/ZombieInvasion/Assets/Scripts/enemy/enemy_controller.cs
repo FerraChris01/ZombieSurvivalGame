@@ -57,7 +57,7 @@ public class enemy_controller : MonoBehaviour
             time.await(250);        
         else if (time.triggerValue() == 2)
         {
-            if (player_entity.instance.getArmor() > 0)
+            if (player_entity.instance.Armour > 0)
                 player_entity.instance.decArmor(Game_manager.instance.getZombieDamage());
             else
                 player_entity.instance.decLife(Game_manager.instance.getZombieDamage());
