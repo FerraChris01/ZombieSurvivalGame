@@ -7,6 +7,7 @@ public class weapon_gun : weapon
     [SerializeField] GameObject timerPrefab;
     private Timer clock;
 
+    [SerializeField] GameObject shootingFire;
     [SerializeField] Bullet bullet;
     [SerializeField] GameObject spawnPoint;
     [SerializeField] int shootingRate;
@@ -24,4 +25,5 @@ public class weapon_gun : weapon
     public bool IsBought { get => isBought; set => isBought = value; }
     public GameObject TimerPrefab { get => timerPrefab; set => timerPrefab = value; }
     public Timer Clock { get => clock; set => clock = value; }
+    public GameObject ShootingFire { get => shootingFire; set => shootingFire = value; }
 }

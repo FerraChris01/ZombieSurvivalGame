@@ -100,54 +100,59 @@ public class RMF_RadialMenu : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        //If your gamepad uses different horizontal and vertical joystick inputs, change them here!
-        //==============================================================================================
-        bool joystickMoved = Input.GetAxis("Horizontal") != 0.0 || Input.GetAxis("Vertical") != 0.0;
-        //==============================================================================================
+            //If your gamepad uses different horizontal and vertical joystick inputs, change them here!
+            //==============================================================================================
+            bool joystickMoved = Input.GetAxis("Horizontal") != 0.0 || Input.GetAxis("Vertical") != 0.0;
+            //==============================================================================================
 
 
-        float rawAngle;
-        
-        if (!useGamepad)
-            rawAngle = Mathf.Atan2(Input.mousePosition.y - rt.position.y, Input.mousePosition.x - rt.position.x) * Mathf.Rad2Deg;
-        else
-            rawAngle = Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal")) * Mathf.Rad2Deg;
+            float rawAngle;
 
-        //If no gamepad, update the angle always. Otherwise, only update it if we've moved the joystick.
-        if (!useGamepad)
-            currentAngle = normalizeAngle(-rawAngle + 90 - globalOffset + (angleOffset / 2f));
-        else if (joystickMoved)
-            currentAngle = normalizeAngle(-rawAngle + 90 - globalOffset + (angleOffset / 2f));
+            if (!useGamepad)
+                rawAngle = Mathf.Atan2(Input.mousePosition.y - rt.position.y, Input.mousePosition.x - rt.position.x) * Mathf.Rad2Deg;
+            else
+                rawAngle = Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal")) * Mathf.Rad2Deg;
 
-        //Handles lazy selection. Checks the current angle, matches it to the index of an element, and then highlights that element.
-        if (angleOffset != 0 && useLazySelection) {
+            //If no gamepad, update the angle always. Otherwise, only update it if we've moved the joystick.
+            if (!useGamepad)
+                currentAngle = normalizeAngle(-rawAngle + 90 - globalOffset + (angleOffset / 2f));
+            else if (joystickMoved)
+                currentAngle = normalizeAngle(-rawAngle + 90 - globalOffset + (angleOffset / 2f));
 
-            //Current element index we're pointing at.
-            index = (int)(currentAngle / angleOffset);
+            //Handles lazy selection. Checks the current angle, matches it to the index of an element, and then highlights that element.
+            if (angleOffset != 0 && useLazySelection)
+            {
 
-            if (elements[index] != null) {
+                //Current element index we're pointing at.
+                index = (int)(currentAngle / angleOffset);
 
-                //Select it.
-                selectButton(index);
+                if (elements[index] != null)
+                {
 
-                //If we click or press a "submit" button (Button on joystick, enter, or spacebar), then we'll execut the OnClick() function for the button.
-                if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Submit")) {
+                    //Select it.
+                    selectButton(index);
 
-                    ExecuteEvents.Execute(elements[index].button.gameObject, pointer, ExecuteEvents.submitHandler);
+                    //If we click or press a "submit" button (Button on joystick, enter, or spacebar), then we'll execut the OnClick() function for the button.
+                    if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Submit"))
+                    {
+
+                        ExecuteEvents.Execute(elements[index].button.gameObject, pointer, ExecuteEvents.submitHandler);
 
 
+                    }
                 }
+
             }
 
-        }
+            //Updates the selection follower if we're using one.
+            if (useSelectionFollower && selectionFollowerContainer != null)
+            {
+                if (!useGamepad || joystickMoved)
+                    selectionFollowerContainer.rotation = Quaternion.Euler(0, 0, rawAngle + 270);
 
-        //Updates the selection follower if we're using one.
-        if (useSelectionFollower && selectionFollowerContainer != null) {
-            if (!useGamepad || joystickMoved)
-                selectionFollowerContainer.rotation = Quaternion.Euler(0, 0, rawAngle + 270);
-           
 
-        } 
+            }
+        
 
     }
 

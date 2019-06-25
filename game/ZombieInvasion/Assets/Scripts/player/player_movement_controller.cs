@@ -26,9 +26,12 @@ public class player_movement_controller : MonoBehaviour
     }
     void Update()
     {
-        faceMouse();
-        move();
-        Debug.Log("speed: " + playerSpeed);
+        if (!Game_manager.instance.IsPaused)
+        {
+            faceMouse();
+            move();
+        }
+
     }
     void faceMouse()
     {

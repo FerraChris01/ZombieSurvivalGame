@@ -25,12 +25,31 @@ public class Game_manager : MonoBehaviour
     private int zombiesKilled;
     private int zombiesLeft;
     private int round;
+    private bool roundIsOver;
+    private bool isPaused;
+
+    public bool IsPaused { get => isPaused; set => isPaused = value; }
+    public bool RoundIsOver { get => roundIsOver; set => roundIsOver = value; }
 
     private void Start()
     {
+        isPaused = false;
+        roundIsOver = false;
         zombiesKilled = 0;
         round = 1;
         zombiesLeft = zombiesNumber;
+    }
+    private void Update()
+    {
+        if (roundIsOver && Bus_point_manager.instance.BusPointReached)
+        {
+            isPaused = true;
+            Shop_menu_manager.instance.Awaken();
+        }
+        
+
+             //startNewRound();
+                
     }
     public int getZombiesLeft()
     {
@@ -50,7 +69,8 @@ public class Game_manager : MonoBehaviour
         zombiesKilled++;
         bonusManager.tryToSpawn(zombiePos);
         if (zombiesLeft == 0)
-            startNewRound();
+            roundIsOver = true;
+                    
     }
     public int getCurrentRound()
     {
@@ -58,9 +78,14 @@ public class Game_manager : MonoBehaviour
     }
     public void startNewRound()
     {
+        isPaused = false;
+        roundIsOver = false;
+        Bus_point_manager.instance.resetBusPoint();             
+        spawn_points_manager.instance.SpawnIsOver = false;
         zombiesLeft = zombiesNumber + (zombiesNumber / 3);
         zombieLife += zombieLife / 3;
         round++;
+        spawn_points_manager.instance.resetZombiesToSpawn();
     }
     public int getZombieSpawningTimeRate()
     {

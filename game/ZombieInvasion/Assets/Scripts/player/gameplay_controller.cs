@@ -8,8 +8,11 @@ public class gameplay_controller : MonoBehaviour
 
     void Update()
     {
-        reload();
-        fire();
+        if (!Game_manager.instance.IsPaused)
+        {
+            reload();
+            fire();
+        }
     }
     private void reload()
     {

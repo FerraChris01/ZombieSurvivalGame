@@ -24,7 +24,7 @@ public class enemy_controller : MonoBehaviour
 
     void Update()
     {
-        if (!GetComponent<enemy_entity>().isDead)
+        if (!GetComponent<enemy_entity>().isDead && !Game_manager.instance.IsPaused)
         {
             float distance = Vector3.Distance(target.position, transform.position);
             if (distance <= lookRadius)
@@ -54,7 +54,7 @@ public class enemy_controller : MonoBehaviour
     void AttackTarget()
     {
         if (time.triggerValue() == 0)
-            time.await(1000);        
+            time.await(250);        
         else if (time.triggerValue() == 2)
         {
             if (player_entity.instance.getArmor() > 0)

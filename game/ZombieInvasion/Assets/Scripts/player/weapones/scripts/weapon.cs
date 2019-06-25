@@ -5,12 +5,13 @@ using UnityEngine;
 public class weapon : MonoBehaviour
 {
     [SerializeField] int damage;
-    [SerializeField] string WeaponName;
+    [SerializeField] string weaponName;
     [SerializeField] int price;
     [SerializeField] float fadingCoefficient;
     [SerializeField] float weight;
     private int level;
     public float Weight { get => weight; set => weight = value; }
+    public string WeaponName { get => weaponName; set => weaponName = value; }
 
     private void Start()
     {

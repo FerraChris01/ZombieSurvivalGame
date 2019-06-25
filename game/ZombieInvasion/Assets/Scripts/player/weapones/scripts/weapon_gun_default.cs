@@ -47,6 +47,8 @@ public class weapon_gun_default : weapon_gun
         if (((SingleShot && Input.GetKeyDown(KeyCode.Mouse0)) || (!SingleShot && Input.GetKey(KeyCode.Mouse0))) && ammoInMag > 0 &&
             (Clock.triggerValue() == 0 || Clock.triggerValue() == 2) && !reloading)
         {
+            GameObject firing = Instantiate(ShootingFire, SpawnPoint.transform.position, SpawnPoint.transform.rotation * Quaternion.Euler(0, 180, 0));
+            firing.transform.SetParent(transform);
             Sound.PlayOneShot(ShootingSound);
             instantiateBullet();            
             Clock.await(ShootingRate);

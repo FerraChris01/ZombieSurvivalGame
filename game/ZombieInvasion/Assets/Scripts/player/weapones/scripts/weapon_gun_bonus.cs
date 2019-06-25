@@ -28,6 +28,8 @@ public class weapon_gun_bonus : weapon_gun
             else
             {
                 Gun_bullet nBullet = (Gun_bullet)Instantiate(Bullet, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                GameObject firing = Instantiate(ShootingFire, SpawnPoint.transform.position, SpawnPoint.transform.rotation * Quaternion.Euler(0, 180, 0));
+                firing.transform.SetParent(transform);
                 nBullet.setDamage(getDamage(), transform.position, getFadingCoefficient());
                 Clock.await(ShootingRate);
             }

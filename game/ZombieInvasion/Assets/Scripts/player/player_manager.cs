@@ -5,8 +5,5 @@ using UnityEngine;
 public class player_manager : MonoBehaviour
 {
 
-    void Update()
-    {
-        
-    }    
+    
 }
