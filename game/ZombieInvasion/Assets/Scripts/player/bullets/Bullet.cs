@@ -8,26 +8,8 @@ public class Bullet : MonoBehaviour
 
     private int damage;
     private float fadingK;
-    
-    public int BulletSpeed()
-    {
-        return bulletSpeed;
-    }
-    public int Damage()
-    {
-        return damage;
-    }
-    public float FadingK()
-    {
-        return fadingK;
-    }
-    public void setFadingK(float fk)
-    {
-        fadingK = fk;
-    }
-    public void setDamage(int dm)
-    {
-        damage = dm;
-    }
 
+    public int Damage { get => damage; set => damage = value; }
+    public float FadingK { get => fadingK; set => fadingK = value; }
+    public int BulletSpeed { get => bulletSpeed; set => bulletSpeed = value; }
 }

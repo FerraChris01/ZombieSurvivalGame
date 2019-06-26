@@ -9,6 +9,7 @@ public class weapon_gun_pistol_rifle : weapon_gun_default
     {
         Gun_bullet nBullet = (Gun_bullet)Instantiate(Bullet, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
         nBullet.setDamage(getDamage(), transform.position, getFadingCoefficient());
+        nBullet.Penetration = Penetration;
     }
     void Update()
     {

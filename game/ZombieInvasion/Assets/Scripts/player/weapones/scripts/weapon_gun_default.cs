@@ -8,6 +8,7 @@ public class weapon_gun_default : weapon_gun
     [SerializeField] int reserveAmmo;
     [SerializeField] int magazineCapacity;
     [SerializeField] AudioClip emptyGunShot;
+    [SerializeField] float penetration;
     private int reserve;
     private bool reloading;
     private int ammoInMag;
@@ -19,6 +20,7 @@ public class weapon_gun_default : weapon_gun
     public int ReserveAmmo { get => reserveAmmo; set => reserveAmmo = value; }
     public int MagazineCapacity { get => magazineCapacity; set => magazineCapacity = value; }
     public AudioClip EmptyGunShot { get => emptyGunShot; set => emptyGunShot = value; }
+    public float Penetration { get => penetration; set => penetration = value; }
 
     private void Start()
     {

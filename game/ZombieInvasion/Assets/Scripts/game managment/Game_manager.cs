@@ -35,8 +35,6 @@ public class Game_manager : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = true;
-        Shop_menu_manager.instance.Awaken();
         roundIsOver = false;
         zombiesKilled = 0;
         round = 1;
@@ -48,10 +46,8 @@ public class Game_manager : MonoBehaviour
         {
             isPaused = true;
             Shop_menu_manager.instance.Awaken();
-        }
-        
-
-             //startNewRound();
+        }    
+        //startNewRound();
                 
     }
     public int getZombiesLeft()

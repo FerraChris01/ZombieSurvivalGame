@@ -8,6 +8,7 @@ public class enemy_entity : MonoBehaviour
     [SerializeField] GameObject timerPrefab;
     private Timer time;
     [SerializeField] int timeBeforeDestroying;
+    [SerializeField] Rigidbody body;
     private int lifePoints;
     public bool isDead { get; set; }
 
@@ -40,6 +41,7 @@ public class enemy_entity : MonoBehaviour
                 isDead = true;
                 GetComponent<NavMeshAgent>().enabled = false;
                 GetComponent<BoxCollider>().enabled = false;
+                body.isKinematic = true;
                 Game_manager.instance.decZombiesLeft(transform.position);
                 player_entity.instance.incMoney(100);
                 time.await(timeBeforeDestroying);

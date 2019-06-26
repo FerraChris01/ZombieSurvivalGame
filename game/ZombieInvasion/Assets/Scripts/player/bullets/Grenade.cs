@@ -14,8 +14,8 @@ public class Grenade : Bullet
 
     private void Start()
     {
-        setDamage((int)(Game_manager.instance.getZombieLife() * 1.5f));
-        GetComponent<Rigidbody>().AddForce(transform.forward * BulletSpeed(), ForceMode.VelocityChange);
+        Damage = (int)(Game_manager.instance.getZombieLife() * 1.5f);
+        GetComponent<Rigidbody>().AddForce(transform.forward * BulletSpeed, ForceMode.VelocityChange);
         triggered = false;
     }
     private void OnCollisionEnter(Collision collision)
@@ -41,7 +41,7 @@ public class Grenade : Bullet
             {
                 Debug.Log("colliso");
                 float offset = Vector3.Distance(center, c.gameObject.transform.position);
-                c.gameObject.GetComponent<enemy_entity>().decLifePoints(Damage() - (int)(offset * FadingK()));
+                c.gameObject.GetComponent<enemy_entity>().decLifePoints(Damage - (int)(offset * FadingK));
             }
         }
         Destroy(gameObject);
