@@ -44,6 +44,7 @@ public class enemy_entity : MonoBehaviour
                 body.isKinematic = true;
                 Game_manager.instance.decZombiesLeft(transform.position);
                 player_entity.instance.incMoney(100);
+                Game_manager.instance.MoneyForRound += 100;
                 time.await(timeBeforeDestroying);
             }
             else if (time.triggerValue() == 2)

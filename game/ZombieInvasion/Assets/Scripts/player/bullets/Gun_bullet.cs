@@ -23,7 +23,6 @@ public class Gun_bullet : Bullet
             temp = other.gameObject.GetComponent<enemy_entity>().getLifePoints() - (Damage - (int)(offset * FadingK));
             other.gameObject.GetComponent<enemy_entity>().decLifePoints(Damage - (int)(offset * FadingK));
             Damage -= (int)(Damage * penetration);
-            Debug.Log(temp);
         }
         else
             Destroy(gameObject);

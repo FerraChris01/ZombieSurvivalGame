@@ -19,26 +19,35 @@ public class Game_manager : MonoBehaviour
     [SerializeField] int playerLife;
     [SerializeField] int playerArmour;
     [SerializeField] int zombieSpawningTimeRate;
+    [SerializeField] GameObject stopwatchPrefab;
     [SerializeField] store_manager store;
     [SerializeField] Bonus_manager bonusManager;
     [SerializeField] dataStorage data;
     [SerializeField] bool isPaused;
 
+    private Stopwatch counter;
     private int zombiesKilled;
     private int zombiesLeft;
     private int round;
     private bool roundIsOver;
-    
+    private int zombieNumberRound;
+    private int moneyForRound;
 
     public bool IsPaused { get => isPaused; set => isPaused = value; }
     public bool RoundIsOver { get => roundIsOver; set => roundIsOver = value; }
+    public int MoneyForRound { get => moneyForRound; set => moneyForRound = value; }
 
     private void Start()
     {
+        counter = Instantiate(stopwatchPrefab).GetComponent<Stopwatch>();
         roundIsOver = false;
         zombiesKilled = 0;
+        moneyForRound = 0;
         round = 1;
         zombiesLeft = zombiesNumber;
+        zombieNumberRound = zombiesLeft;
+        counter.Begin();
+        counter.Unpause();
     }
     private void Update()
     {
@@ -47,7 +56,6 @@ public class Game_manager : MonoBehaviour
             isPaused = true;
             Shop_menu_manager.instance.Awaken();
         }    
-        //startNewRound();
                 
     }
     public int getZombiesLeft()
@@ -68,7 +76,13 @@ public class Game_manager : MonoBehaviour
         zombiesKilled++;
         bonusManager.tryToSpawn(zombiePos);
         if (zombiesLeft == 0)
+        {
             roundIsOver = true;
+            counter.Pause();
+            int temp = (int)((zombieNumberRound / (float)(counter.GetSeconds())) * moneyForRound);
+            Debug.Log("temp " + temp);
+            player_entity.instance.incMoney(temp);
+        }
                     
     }
     public int getCurrentRound()
@@ -76,7 +90,7 @@ public class Game_manager : MonoBehaviour
         return round;
     }
     public void startNewRound()
-    {
+    {        
         isPaused = false;
         roundIsOver = false;
         Bus_point_manager.instance.resetBusPoint();             
@@ -84,7 +98,11 @@ public class Game_manager : MonoBehaviour
         zombiesLeft = zombiesNumber + (zombiesNumber / 3);
         zombieLife += zombieLife / 3;
         round++;
+        zombieNumberRound = zombiesLeft;
+        moneyForRound = 0;
         spawn_points_manager.instance.resetZombiesToSpawn();
+        counter.Reset();
+        counter.Unpause();
     }
     public int getZombieSpawningTimeRate()
     {

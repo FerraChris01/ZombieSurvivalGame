@@ -35,7 +35,6 @@ public class bonus_minigun : bonus
         if (isSpawned)
         {
             temp = player_equipment.instance.getSelectedGunIndex();
-            Debug.Log("temp: " + temp);
             player_equipment.instance.switchToBonus(3);            
             minigunActive = true;
         }
