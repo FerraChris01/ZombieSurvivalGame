@@ -11,6 +11,7 @@ TagManager:
   - grenade
   - bullet
   - FxTemporaire
+  - ENEMY
   layers:
   - Default
   - TransparentFX

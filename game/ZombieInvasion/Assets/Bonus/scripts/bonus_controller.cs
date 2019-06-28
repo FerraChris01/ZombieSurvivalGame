@@ -67,6 +67,8 @@ public class bonus_controller : MonoBehaviour
                 bonus_grenade_launcher.instance.run();
             else if (bonusID == 3)
                 bonus_nuke.instance.run();
+            else if (bonusID == 4)
+                bonus_instant_kill.instance.run();
 
             Debug.Log("bonus active");
             Destroy(transform.parent.gameObject);

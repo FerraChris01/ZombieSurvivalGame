@@ -10,13 +10,15 @@ public class enemy_entity : MonoBehaviour
     [SerializeField] int timeBeforeDestroying;
     [SerializeField] Rigidbody body;
     private int lifePoints;
+    private int tempLifePoints;
     public bool isDead { get; set; }
+
+    public int LifePoints { get => lifePoints; set => lifePoints = value; }
 
     void Start()
     {
         time = Instantiate(timerPrefab).GetComponent<Timer>();
         Game_manager.instance = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_manager>();
-        lifePoints = Game_manager.instance.getZombieLife();
         isDead = false;
     }
     public int getLifePoints()
@@ -25,23 +27,29 @@ public class enemy_entity : MonoBehaviour
     }
     public void setLifePoints(int lp)
     {
+        tempLifePoints = lifePoints;
         lifePoints = lp;
     }
     public void decLifePoints(int lp)
     {
         lifePoints -= lp;
     }    
+    public void resetLifePointsFromBonus()
+    {
+        lifePoints = tempLifePoints;
+    }
 
     void Update()
     {
+
         if (lifePoints <= 0)
         {
             if (time.triggerValue() == 0)
             {
                 isDead = true;
                 GetComponent<NavMeshAgent>().enabled = false;
-                GetComponent<BoxCollider>().enabled = false;
-                body.isKinematic = true;
+                GetComponent<CapsuleCollider>().enabled = false;
+                body.GetComponent<Rigidbody>().isKinematic = true;
                 Game_manager.instance.decZombiesLeft(transform.position);
                 player_entity.instance.incMoney(100);
                 Game_manager.instance.MoneyForRound += 100;

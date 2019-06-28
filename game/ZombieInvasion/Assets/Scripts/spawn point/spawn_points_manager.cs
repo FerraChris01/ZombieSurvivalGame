@@ -42,7 +42,12 @@ public class spawn_points_manager : MonoBehaviour
             {
                 time.await(Game_manager.instance.getZombieSpawningTimeRate());
                 int temp = Random.Range(0, 3);
-                Instantiate(zombie, new Vector3(vect[temp].transform.position.x, player.transform.position.y, vect[temp].transform.position.z), zombie.transform.rotation);
+                GameObject nZombie = Instantiate(zombie, new Vector3(vect[temp].transform.position.x, player.transform.position.y, vect[temp].transform.position.z), zombie.transform.rotation);
+                if (bonus_instant_kill.instance.IsSpawned())
+                    nZombie.transform.Find("enemy").GetComponent<enemy_entity>().setLifePoints(1);
+                else
+                    nZombie.transform.Find("enemy").GetComponent<enemy_entity>().setLifePoints(Game_manager.instance.getZombieLife());
+
                 zombiesToSpawn--;
             }
             if (zombiesToSpawn == 0)

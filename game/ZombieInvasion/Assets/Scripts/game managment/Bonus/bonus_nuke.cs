@@ -16,8 +16,11 @@ public class bonus_nuke : bonus
     {
         if (isSpawned)
         {
-            foreach (GameObject g in GameObject.FindGameObjectsWithTag("enemy"))
-                Destroy(g.gameObject);
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("ENEMY"))
+            {
+                int temp = g.transform.Find("enemy").GetComponent<enemy_entity>().getLifePoints();
+                g.transform.Find("enemy").GetComponent<enemy_entity>().decLifePoints(temp);
+            }
         }
     }
 }
