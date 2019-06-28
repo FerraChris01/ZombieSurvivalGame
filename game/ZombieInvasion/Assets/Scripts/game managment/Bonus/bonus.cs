@@ -6,8 +6,16 @@ public class bonus : MonoBehaviour
 {
     [SerializeField] int spawningProbability;
     [SerializeField] GameObject bonusPrefab;
+    [SerializeField] int bonusID;
+    [SerializeField] int durationTime;
+
     protected bool isSpawned;
-    
+    private bool isActive = false;
+
+    public int BonusID { get => bonusID; set => bonusID = value; }
+    public int DurationTime { get => durationTime; set => durationTime = value; }
+    public bool IsActive { get => isActive; set => isActive = value; }
+
     public virtual void tryToSpawn(Vector3 zombiePos)
     {
         if (!isSpawned)

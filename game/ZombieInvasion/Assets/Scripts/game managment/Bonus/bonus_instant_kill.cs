@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class bonus_instant_kill : bonus
-{
-    [SerializeField] int durationTime;
+{    
     [SerializeField] GameObject timerPrefab;
     private Timer clock; 
 
@@ -28,14 +27,18 @@ public class bonus_instant_kill : bonus
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("ENEMY"))
                 g.transform.Find("enemy").GetComponent<enemy_entity>().setLifePoints(1);
 
-            clock.await(durationTime);
+            bonus_updater.instance.ActiveBonus = 4;
+            IsActive = true;
+            clock.await(DurationTime);
         }
     }
     public void Update()
     {
         if (isSpawned && clock.triggerValue() == 2)
         {
+            IsActive = false;
             isSpawned = false;
+            bonus_updater.instance.resetSelectedBonus();
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("ENEMY"))
                 g.transform.Find("enemy").GetComponent<enemy_entity>().resetLifePointsFromBonus();
         }

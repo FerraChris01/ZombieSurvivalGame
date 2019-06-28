@@ -904,6 +904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 129145929365287606}
   - component: {fileID: 129145929365287600}
+  - component: {fileID: 129145929365287608}
   - component: {fileID: 129145929365287607}
   m_Layer: 5
   m_Name: Panel
@@ -966,6 +967,24 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &129145929365287608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129145929365287605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0006ddeaed8ddc548ac0082103c53377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 7aa7f1de42db4d5428854add0df168c6, type: 2}
+  time: {fileID: 129145928193352146}
+  rounds: {fileID: 129145927944212943}
+  zombiesKilled: {fileID: 129145929409427476}
+  score: {fileID: 0}
+  backButton: {fileID: 129145929119851621}
 --- !u!1 &129145929409427476
 GameObject:
   m_ObjectHideFlags: 0

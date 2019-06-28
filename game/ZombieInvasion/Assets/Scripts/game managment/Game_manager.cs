@@ -64,7 +64,7 @@ public class Game_manager : MonoBehaviour
     }
     public void endGame()
     {
-        //data.time = time_updater.instance.clock.toString();
+        data.time = time_updater.instance.clock.toString();
         data.rounds = round;
         data.zombiesKilled = zombiesKilled;
         SceneManager.LoadScene("endMenu");

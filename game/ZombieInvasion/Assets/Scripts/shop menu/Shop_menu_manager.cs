@@ -12,7 +12,6 @@ public class Shop_menu_manager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] Shop_money_updater money;
     [SerializeField] GameObject gameHUD;
     private bool waiting;
 
@@ -43,6 +42,8 @@ public class Shop_menu_manager : MonoBehaviour
     }
     private void AwakenComponents()
     {
-        money.Awaken();
+        Shop_money_updater.instance.Awaken();
+        Shop_health_armour_updater.instance.Awaken();
+
     }
 }

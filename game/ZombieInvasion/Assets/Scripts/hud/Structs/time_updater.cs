@@ -15,17 +15,13 @@ public class time_updater : MonoBehaviour
     private float timerFromStart;
     public CData clock { get; set; }
 
-    private void Start()
-    {
-        
-    }
     void Update()
     {
         timerFromStart += Time.deltaTime;
         int minutes = (int)Mathf.Floor(timerFromStart / 60);
         int seconds = (int)timerFromStart % 60;
         int hours = (int)timerFromStart / 3600;
-        CData clock = new CData(seconds, minutes, hours);
+        clock = new CData(seconds, minutes, hours);
 
         GetComponent<UnityEngine.UI.Text>().text = clock.toString();
     }
